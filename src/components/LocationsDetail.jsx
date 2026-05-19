@@ -8,9 +8,9 @@ import Reveal from './Reveal.jsx'
   LOCATION DETAIL — reusable section for a single location. Used twice on the
   Locations page (Antelias, Mazraat Yachouh).
 
-  Real addresses, hours, and phone numbers should replace the placeholders
-  below. mapHref defaults to a Google Maps search by name; swap for a direct
-  map URL when exact coordinates are confirmed.
+  `phones` accepts an array of { label, value, href } so each location can
+  show multiple numbers (mobile + landline). Phones with href render as
+  clickable tel: links. `mapHref` opens in a new tab.
 */
 
 export default function LocationsDetail({
@@ -19,7 +19,7 @@ export default function LocationsDetail({
   description,
   address = 'Address to be added',
   hours = 'Hours to be added',
-  phone = 'Phone to be added',
+  phones = [{ label: 'Phone', value: 'Phone to be added', href: null }],
   mapHref,
   bg = 'ivory',
 }) {
@@ -55,7 +55,24 @@ export default function LocationsDetail({
               <dl className="border-t border-stone/40">
                 <DetailRow label="Address" value={address} />
                 <DetailRow label="Hours" value={hours} />
-                <DetailRow label="Phone" value={phone} />
+                {phones.map((p) => (
+                  <DetailRow
+                    key={p.label}
+                    label={p.label}
+                    value={
+                      p.href ? (
+                        <a
+                          href={p.href}
+                          className="text-charcoal/80 transition-colors duration-400 ease-luxury hover:text-bronze"
+                        >
+                          {p.value}
+                        </a>
+                      ) : (
+                        p.value
+                      )
+                    }
+                  />
+                ))}
               </dl>
             </Reveal>
 

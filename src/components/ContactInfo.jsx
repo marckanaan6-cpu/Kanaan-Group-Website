@@ -5,45 +5,83 @@ import SectionLabel from './SectionLabel.jsx'
 import Reveal from './Reveal.jsx'
 
 /*
-  CONTACT METHODS — edit this array to swap in real contact details.
-  When you have real values, set the `href` field too. If `href` is null,
-  the entry renders as muted placeholder text (no fake link).
-
-  Examples once real:
-    { label: 'PHONE',     value: '+961 1 234 567',          href: 'tel:+9611234567' }
-    { label: 'EMAIL',     value: 'hello@kanaangroup.com',   href: 'mailto:hello@kanaangroup.com' }
-    { label: 'INSTAGRAM', value: '@kanaangroup',            href: 'https://instagram.com/kanaangroup' }
+  CONTACT METHODS — real Kanaan Group contact details.
+  - Showroom entries use `items` to list the mobile + landline.
+  - Single-value entries (email, instagram) use `value` + `href`.
+  - `external: true` on Instagram opens in a new tab.
+  - Tel extensions use the comma convention (e.g. tel:+9614407198,0)
+    which most modern phones interpret as "dial, pause, dial extension".
 */
 const METHODS = [
-  { label: 'PHONE', value: 'Phone to be added', href: null },
-  { label: 'EMAIL', value: 'Email to be added', href: null },
-  { label: 'INSTAGRAM', value: 'Instagram to be added', href: null },
+  {
+    label: 'ANTELIAS',
+    items: [
+      { sublabel: 'Mobile', value: '+961 3 807 020', href: 'tel:+9613807020' },
+      { sublabel: 'Tel', value: '+961 4 407 198 ext. 0', href: 'tel:+9614407198,0' },
+    ],
+  },
+  {
+    label: 'MAZRAAT YACHOUH',
+    items: [
+      { sublabel: 'Mobile', value: '+961 3 302 205', href: 'tel:+9613302205' },
+      { sublabel: 'Tel', value: '+961 4 924 982', href: 'tel:+9614924982' },
+    ],
+  },
+  {
+    label: 'EMAIL',
+    value: 'khaled@kanaan-group.com',
+    href: 'mailto:khaled@kanaan-group.com',
+  },
+  {
+    label: 'INSTAGRAM',
+    value: '@kanaan_group',
+    href: 'https://www.instagram.com/kanaan_group?igsh=M2dubmxiY2dvYWVm',
+    external: true,
+  },
 ]
 
 function MethodRow({ method, delay }) {
-  const content = (
-    <div className="flex flex-col items-center gap-2">
-      <span className="text-eyebrow uppercase tracking-[0.22em] text-walnut/55">
-        {method.label}
-      </span>
-      <span className="font-serif text-[clamp(1.5rem,2.2vw,2rem)] leading-[1.1] text-walnut">
-        {method.value}
-      </span>
-    </div>
-  )
-
   return (
     <Reveal delay={delay}>
-      {method.href ? (
-        <a
-          href={method.href}
-          className="group block py-8 transition-colors duration-500 ease-luxury hover:bg-ivory/50"
-        >
-          {content}
-        </a>
-      ) : (
-        <div className="py-8">{content}</div>
-      )}
+      <div className="py-8 text-center">
+        <p className="text-eyebrow uppercase tracking-[0.22em] text-walnut/55">
+          {method.label}
+        </p>
+
+        {method.items ? (
+          <div className="mt-5 flex flex-col gap-3">
+            {method.items.map((item) => (
+              <div
+                key={item.sublabel}
+                className="flex flex-col items-center gap-1 sm:flex-row sm:justify-center sm:gap-4"
+              >
+                <span className="text-[11px] uppercase tracking-[0.18em] text-walnut/55 sm:w-20 sm:text-right">
+                  {item.sublabel}
+                </span>
+                <a
+                  href={item.href}
+                  className="font-serif text-[clamp(1.25rem,1.8vw,1.5rem)] leading-[1.2] text-walnut transition-colors duration-400 ease-luxury hover:text-bronze sm:text-left"
+                >
+                  {item.value}
+                </a>
+              </div>
+            ))}
+          </div>
+        ) : method.href ? (
+          <a
+            href={method.href}
+            target={method.external ? '_blank' : undefined}
+            rel={method.external ? 'noreferrer' : undefined}
+            className="mt-3 inline-block font-serif text-[clamp(1.5rem,2.2vw,2rem)] leading-[1.1] text-walnut transition-colors duration-400 ease-luxury hover:text-bronze"
+          >
+            {method.value}
+          </a>
+        ) : (
+          <span className="mt-3 inline-block font-serif text-[clamp(1.5rem,2.2vw,2rem)] leading-[1.1] text-walnut">
+            {method.value}
+          </span>
+        )}
+      </div>
     </Reveal>
   )
 }
@@ -74,7 +112,7 @@ export default function ContactInfo() {
             <MethodRow
               key={method.label}
               method={method}
-              delay={0.15 + i * 0.1}
+              delay={0.15 + i * 0.08}
             />
           ))}
         </div>

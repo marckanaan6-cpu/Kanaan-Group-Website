@@ -21,14 +21,29 @@ const VISIT_LINKS = [
   { label: 'Mazraat Yachouh', to: '/locations' },
 ]
 
-// When you have real values, replace the label and set href accordingly:
-//   { label: '+961 1 234 567', href: 'tel:+9611234567' }
-//   { label: 'hello@kanaangroup.com', href: 'mailto:hello@kanaangroup.com' }
-//   { label: '@kanaangroup', href: 'https://instagram.com/kanaangroup' }
+// Real contact details. Phone numbers are paired with showroom labels via
+// `sublabel`. External links (Instagram) set `external: true` to open in a
+// new tab.
 const CONTACT_LINKS = [
-  { label: 'Phone to be added', href: null },
-  { label: 'Email to be added', href: null },
-  { label: 'Instagram to be added', href: null },
+  {
+    label: '+961 3 807 020',
+    sublabel: 'Antelias',
+    href: 'tel:+9613807020',
+  },
+  {
+    label: '+961 3 302 205',
+    sublabel: 'Mazraat Yachouh',
+    href: 'tel:+9613302205',
+  },
+  {
+    label: 'khaled@kanaan-group.com',
+    href: 'mailto:khaled@kanaan-group.com',
+  },
+  {
+    label: '@kanaan_group',
+    href: 'https://www.instagram.com/kanaan_group?igsh=M2dubmxiY2dvYWVm',
+    external: true,
+  },
 ]
 
 function ColumnHeading({ children }) {
@@ -37,25 +52,41 @@ function ColumnHeading({ children }) {
   )
 }
 
-function FooterLink({ to, href, children }) {
+function FooterLink({ to, href, external, sublabel, children }) {
   const className =
     'inline-block text-[14px] text-ivory/80 transition-colors duration-400 ease-luxury hover:text-ivory'
+
+  const content = sublabel ? (
+    <>
+      <span className="block">{children}</span>
+      <span className="mt-1 block text-[10px] uppercase tracking-[0.18em] text-ivory/45">
+        {sublabel}
+      </span>
+    </>
+  ) : (
+    children
+  )
 
   if (to) {
     return (
       <Link to={to} className={className}>
-        {children}
+        {content}
       </Link>
     )
   }
   if (href) {
     return (
-      <a href={href} className={className}>
-        {children}
+      <a
+        href={href}
+        className={className}
+        target={external ? '_blank' : undefined}
+        rel={external ? 'noreferrer' : undefined}
+      >
+        {content}
       </a>
     )
   }
-  return <span className="text-[14px] text-ivory/55">{children}</span>
+  return <span className="text-[14px] text-ivory/55">{content}</span>
 }
 
 export default function Footer() {
@@ -111,10 +142,16 @@ export default function Footer() {
               {/* Contact */}
               <div className="lg:col-span-2">
                 <ColumnHeading>Contact</ColumnHeading>
-                <ul className="mt-5 flex flex-col gap-3">
+                <ul className="mt-5 flex flex-col gap-4">
                   {CONTACT_LINKS.map((item) => (
                     <li key={item.label}>
-                      <FooterLink href={item.href}>{item.label}</FooterLink>
+                      <FooterLink
+                        href={item.href}
+                        external={item.external}
+                        sublabel={item.sublabel}
+                      >
+                        {item.label}
+                      </FooterLink>
                     </li>
                   ))}
                 </ul>
