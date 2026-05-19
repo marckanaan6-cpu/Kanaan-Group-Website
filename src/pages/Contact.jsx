@@ -1,7 +1,17 @@
+import Header from '../components/Header.jsx'
+import Footer from '../components/Footer.jsx'
+import ContactHero from '../components/ContactHero.jsx'
+import ContactInfo from '../components/ContactInfo.jsx'
+
 export default function Contact() {
   return (
-    <main className="min-h-screen flex items-center justify-center px-6">
-      <h1 className="font-serif text-3xl text-walnut">Contact</h1>
-    </main>
+    <>
+      <Header />
+      <main>
+        <ContactHero />
+        <ContactInfo />
+      </main>
+      <Footer />
+    </>
   )
 }

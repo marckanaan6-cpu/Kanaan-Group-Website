@@ -1,7 +1,19 @@
+import Header from '../components/Header.jsx'
+import Footer from '../components/Footer.jsx'
+import AccessoriesHero from '../components/AccessoriesHero.jsx'
+import AccessoriesCategories from '../components/AccessoriesCategories.jsx'
+import AccessoriesCTA from '../components/AccessoriesCTA.jsx'
+
 export default function Accessories() {
   return (
-    <main className="min-h-screen flex items-center justify-center px-6">
-      <h1 className="font-serif text-3xl text-walnut">Accessories</h1>
-    </main>
+    <>
+      <Header />
+      <main>
+        <AccessoriesHero />
+        <AccessoriesCategories />
+        <AccessoriesCTA />
+      </main>
+      <Footer />
+    </>
   )
 }

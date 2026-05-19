@@ -1,7 +1,20 @@
+// Catalogue page — see SECTION components for content.
+import Header from '../components/Header.jsx'
+import Footer from '../components/Footer.jsx'
+import CatalogueHero from '../components/CatalogueHero.jsx'
+import CatalogueInside from '../components/CatalogueInside.jsx'
+import CatalogueCTA from '../components/CatalogueCTA.jsx'
+
 export default function Catalogue() {
   return (
-    <main className="min-h-screen flex items-center justify-center px-6">
-      <h1 className="font-serif text-3xl text-walnut">Catalogue</h1>
-    </main>
+    <>
+      <Header />
+      <main>
+        <CatalogueHero />
+        <CatalogueInside />
+        <CatalogueCTA />
+      </main>
+      <Footer />
+    </>
   )
 }

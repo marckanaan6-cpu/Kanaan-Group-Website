@@ -1,7 +1,21 @@
+import Header from '../components/Header.jsx'
+import Footer from '../components/Footer.jsx'
+import AboutHero from '../components/AboutHero.jsx'
+import AboutFamily from '../components/AboutFamily.jsx'
+import AboutAtelier from '../components/AboutAtelier.jsx'
+import AboutCTA from '../components/AboutCTA.jsx'
+
 export default function About() {
   return (
-    <main className="min-h-screen flex items-center justify-center px-6">
-      <h1 className="font-serif text-3xl text-walnut">About</h1>
-    </main>
+    <>
+      <Header />
+      <main>
+        <AboutHero />
+        <AboutFamily />
+        <AboutAtelier />
+        <AboutCTA />
+      </main>
+      <Footer />
+    </>
   )
 }
