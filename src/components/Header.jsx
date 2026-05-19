@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { label: 'Locations', to: '/locations' },
 ]
 
-export default function Header() {
+export default function Header({ overHero = false }) {
   // Lazy initial state — read the actual scroll position on first render
   // so the header doesn't flash the wrong visual state if the browser has
   // restored a non-zero scroll position from a previous session.
@@ -21,6 +21,13 @@ export default function Header() {
   })
   const [drawerOpen, setDrawerOpen] = useState(false)
   const location = useLocation()
+
+  // "solid" means show the ivory background + walnut text state.
+  // - Homepage passes overHero={true} → header is transparent at scroll=0 over the
+  //   dark hero image, and switches to solid once the user scrolls past it.
+  // - Inner pages omit the prop (overHero defaults to false) → header is always
+  //   solid, so its text is readable against the page's ivory/beige background.
+  const solid = !overHero || scrolled
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -33,7 +40,7 @@ export default function Header() {
     setDrawerOpen(false)
   }, [location.pathname])
 
-  const tone = scrolled ? 'text-walnut' : 'text-ivory'
+  const tone = solid ? 'text-walnut' : 'text-ivory'
 
   return (
     <>
@@ -49,19 +56,19 @@ export default function Header() {
       */}
       <header className="fixed inset-x-0 top-0 z-40">
         {/* Scrolled-state layer — ivory + blur + hairline, fades in once
-            the user scrolls past the hero */}
+            the user scrolls past the hero (or stays on for inner pages) */}
         <div
           aria-hidden="true"
           className={`pointer-events-none absolute inset-0 border-b border-stone/40 bg-ivory/95 backdrop-blur-md transition-opacity duration-600 ease-luxury ${
-            scrolled ? 'opacity-100' : 'opacity-0'
+            solid ? 'opacity-100' : 'opacity-0'
           }`}
         />
 
-        {/* Top-of-page warm wash — visible over the hero, fades out on scroll */}
+        {/* Top-of-page warm wash — only relevant when over a dark hero image */}
         <div
           aria-hidden="true"
           className={`pointer-events-none absolute inset-x-0 top-0 -bottom-16 bg-gradient-to-b from-walnut/45 via-walnut/15 to-transparent transition-opacity duration-600 ease-luxury ${
-            scrolled ? 'opacity-0' : 'opacity-100'
+            solid ? 'opacity-0' : 'opacity-100'
           }`}
         />
 
@@ -90,7 +97,7 @@ export default function Header() {
             <Link
               to="/contact"
               className={`hidden border px-6 py-2.5 text-[10.5px] uppercase tracking-[0.22em] transition-colors duration-500 ease-luxury lg:inline-block ${
-                scrolled
+                solid
                   ? 'border-bronze/80 text-bronze hover:bg-bronze hover:text-ivory'
                   : 'border-ivory/60 text-ivory hover:bg-ivory hover:text-walnut'
               }`}

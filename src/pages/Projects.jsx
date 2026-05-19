@@ -1,7 +1,21 @@
+import Header from '../components/Header.jsx'
+import Footer from '../components/Footer.jsx'
+import ProjectsHero from '../components/ProjectsHero.jsx'
+import ProjectsCategories from '../components/ProjectsCategories.jsx'
+import ProjectsProcess from '../components/ProjectsProcess.jsx'
+import ProjectsCTA from '../components/ProjectsCTA.jsx'
+
 export default function Projects() {
   return (
-    <main className="min-h-screen flex items-center justify-center px-6">
-      <h1 className="font-serif text-3xl text-walnut">Projects</h1>
-    </main>
+    <>
+      <Header />
+      <main>
+        <ProjectsHero />
+        <ProjectsCategories />
+        <ProjectsProcess />
+        <ProjectsCTA />
+      </main>
+      <Footer />
+    </>
   )
 }
