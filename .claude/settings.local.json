@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(npm create *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(curl -sS -o /dev/null -w \"main.jsx HTTP %{http_code}\\\\n\" \"http://localhost:5174/src/main.jsx\")",
+      "Bash(curl -sS -o /dev/null -w \"App.jsx HTTP %{http_code}\\\\n\" \"http://localhost:5174/src/App.jsx\")",
+      "Bash(curl -sS -o /dev/null -w \"Home.jsx HTTP %{http_code}\\\\n\" \"http://localhost:5174/src/pages/Home.jsx\")",
+      "Bash(curl -sS -o /dev/null -w \"/ %{http_code}\\\\n\" \"http://localhost:5175/\")",
+      "Bash(curl -sS -o /dev/null -w \"Home.jsx %{http_code}\\\\n\" \"http://localhost:5175/src/pages/Home.jsx\")",
+      "Bash(curl -sS -o /dev/null -w \"Header.jsx %{http_code}\\\\n\" \"http://localhost:5175/src/components/Header.jsx\")",
+      "Bash(curl -sS -o /dev/null -w \"Hero.jsx %{http_code}\\\\n\" \"http://localhost:5175/src/components/Hero.jsx\")",
+      "Bash(curl -sS -o /dev/null -w \"MobileDrawer.jsx %{http_code}\\\\n\" \"http://localhost:5175/src/components/MobileDrawer.jsx\")",
+      "Bash(curl -sS -o /dev/null -w \"Hero.jsx %{http_code}\\\\n\" \"http://localhost:5177/src/components/Hero.jsx\")",
+      "Bash(curl -sS -o /dev/null -w \"Home.jsx %{http_code}\\\\n\" \"http://localhost:5177/src/pages/Home.jsx\")",
+      "Bash(curl -sS -o /dev/null -w \"hero-mood.svg %{http_code}\\\\n\" \"http://localhost:5177/images/projects/hero-mood.svg\")",
+      "Bash(curl -sS -o /dev/null -w \"hero-mood.jpg %{http_code}\\\\n\" \"http://localhost:5177/images/projects/hero-mood.jpg\")",
+      "WebFetch(domain:www.trediinteriors.com)",
+      "WebFetch(domain:www.wix.com)",
+      "Bash(curl -sS -o /dev/null -w \"Hero.jsx %{http_code}\\\\n\" \"http://localhost:5178/src/components/Hero.jsx\")",
+      "Bash(curl -sS -o /dev/null -w \"Home.jsx %{http_code}\\\\n\" \"http://localhost:5178/src/pages/Home.jsx\")",
+      "Bash(until grep *)",
+      "Bash(curl -sS -o /dev/null -w \"Hero.jsx %{http_code}\\\\n\" \"http://localhost:5179/src/components/Hero.jsx\")",
+      "Bash(curl -sS -o /dev/null -w \"Header.jsx %{http_code}\\\\n\" \"http://localhost:5179/src/components/Header.jsx\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(git -C \"C:/Users/Marc/Desktop/Kanaan-Group-Website\" status)",
+      "Bash(git -C \"C:/Users/Marc/Desktop/Kanaan-Group-Website\" config user.name)",
+      "Bash(git -C \"C:/Users/Marc/Desktop/Kanaan-Group-Website\" config user.email)"
+    ]
+  }
+}

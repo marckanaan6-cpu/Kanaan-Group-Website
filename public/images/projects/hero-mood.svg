@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="base" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F8E6C5"/>
+      <stop offset="22%" stop-color="#D6A876"/>
+      <stop offset="52%" stop-color="#9C7448"/>
+      <stop offset="78%" stop-color="#5B3A22"/>
+      <stop offset="100%" stop-color="#2B1A11"/>
+    </linearGradient>
+    <radialGradient id="daylight" cx="80%" cy="18%" r="52%">
+      <stop offset="0%" stop-color="#FCEFD2" stop-opacity="0.95"/>
+      <stop offset="30%" stop-color="#E8C896" stop-opacity="0.5"/>
+      <stop offset="70%" stop-color="#B8895A" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#8C6A3F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="midWarmth" cx="60%" cy="55%" r="42%">
+      <stop offset="0%" stop-color="#E8C896" stop-opacity="0.28"/>
+      <stop offset="60%" stop-color="#B8895A" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#8C6A3F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cornerShadow" cx="6%" cy="98%" r="62%">
+      <stop offset="0%" stop-color="#1A0F08" stop-opacity="0.6"/>
+      <stop offset="45%" stop-color="#1A0F08" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#1A0F08" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grain" x="0" y="0" width="220" height="900" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="900" stroke="#3B2418" stroke-width="0.8" stroke-opacity="0.10"/>
+      <line x1="38" y1="0" x2="38" y2="900" stroke="#F6F1E7" stroke-width="0.3" stroke-opacity="0.05"/>
+      <line x1="85" y1="0" x2="85" y2="900" stroke="#3B2418" stroke-width="0.5" stroke-opacity="0.07"/>
+      <line x1="142" y1="0" x2="142" y2="900" stroke="#F6F1E7" stroke-width="0.4" stroke-opacity="0.04"/>
+      <line x1="178" y1="0" x2="178" y2="900" stroke="#3B2418" stroke-width="0.6" stroke-opacity="0.08"/>
+    </pattern>
+    <linearGradient id="topVignette" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1A0F08" stop-opacity="0.15"/>
+      <stop offset="20%" stop-color="#1A0F08" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#base)"/>
+  <rect width="1600" height="900" fill="url(#grain)"/>
+  <rect width="1600" height="900" fill="url(#midWarmth)"/>
+  <rect width="1600" height="900" fill="url(#daylight)"/>
+  <rect width="1600" height="900" fill="url(#cornerShadow)"/>
+  <rect width="1600" height="900" fill="url(#topVignette)"/>
+</svg>
