@@ -19,15 +19,13 @@ const LOCATIONS = [
     description:
       'Woodwork, interiors, accessories, and professional supplies.',
     address: 'Address to be added',
-    mapHref:
-      'https://www.google.com/maps/search/?api=1&query=Kanaan+Group+Antelias',
+    mapHref: 'https://maps.app.goo.gl/uTPEwp8RbzsiaTFM6',
   },
   {
     name: 'Mazraat Yachouh',
     description: 'Workshop, production, and showroom support.',
     address: 'Address to be added',
-    mapHref:
-      'https://www.google.com/maps/search/?api=1&query=Kanaan+Group+Mazraat+Yachouh',
+    mapHref: 'https://maps.app.goo.gl/fnp2MsarTnJPoL8X8',
   },
 ]
 
