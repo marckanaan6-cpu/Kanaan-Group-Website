@@ -111,16 +111,9 @@ export default function Hero() {
       >
         <div className="mx-auto w-full max-w-container px-6 pb-32 sm:px-10 sm:pb-36 lg:px-24 lg:pb-44">
           <div className="max-w-lg text-center text-ivory sm:text-left">
-            <motion.span
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: LUXURY_EASE, delay: 0.2 }}
-              className="inline-block text-eyebrow uppercase text-ivory/90"
-            >
-              Since 1980
-            </motion.span>
-
-            <h1 className="mt-5 font-serif text-display-md leading-[1.02] text-ivory">
+            {/* The "Since 1980" line now lives once, in the header masthead,
+                so the hero opens straight on the headline. */}
+            <h1 className="font-serif text-display-md leading-[1.02] text-ivory">
               <HeadlineLine delay={0.45}>From the smallest</HeadlineLine>
               <HeadlineLine delay={0.6}>hinge</HeadlineLine>
               <HeadlineLine delay={0.75}>to the whole</HeadlineLine>

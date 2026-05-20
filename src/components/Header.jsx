@@ -41,6 +41,27 @@ export default function Header({ overHero = false }) {
   }, [location.pathname])
 
   const tone = solid ? 'text-walnut' : 'text-ivory'
+  const wordmarkClass = `font-serif text-base uppercase tracking-[0.22em] transition-colors duration-600 ease-luxury ${tone}`
+
+  // Contact button — filled ivory over the dark hero (transparent state),
+  // bronze outline once solid (inner pages + scrolled homepage). The filled
+  // button is the emphasis, so it carries no underline.
+  const contactClass = `border px-6 py-2.5 text-[10.5px] uppercase tracking-[0.22em] transition-colors duration-500 ease-luxury ${
+    solid
+      ? 'border-bronze/80 text-bronze hover:bg-bronze hover:text-ivory'
+      : 'border-ivory bg-ivory text-walnut hover:bg-ivory/85'
+  }`
+
+  const burgerButton = (
+    <button
+      type="button"
+      aria-label="Open menu"
+      onClick={() => setDrawerOpen(true)}
+      className={`transition-colors duration-600 ease-luxury lg:hidden ${tone}`}
+    >
+      <Menu size={26} strokeWidth={1.4} />
+    </button>
+  )
 
   return (
     <>
@@ -52,7 +73,7 @@ export default function Header({ overHero = false }) {
            the header stuck in a half-rendered state at the top of the page.
          - Two child layers handle the visual states via opacity transitions
            only — smooth, no interpolation issues.
-         - Nav content sits above both layers with `relative z-10`.
+         - Content sits above both layers with `relative z-10`.
       */}
       <header className="fixed inset-x-0 top-0 z-40">
         {/* Scrolled-state layer — ivory + blur + hairline, fades in once
@@ -72,48 +93,98 @@ export default function Header({ overHero = false }) {
           }`}
         />
 
-        <div className="relative z-10 mx-auto flex h-20 max-w-container items-center justify-between px-6 sm:px-10 lg:h-28 lg:px-24">
-          <Link
-            to="/"
-            className={`font-serif text-base uppercase tracking-[0.22em] transition-colors duration-600 ease-luxury ${tone}`}
-          >
-            Kanaan Group
-          </Link>
+        <div className="relative z-10 mx-auto max-w-container px-6 sm:px-10 lg:px-24">
+          {overHero ? (
+            <>
+              {/* HOMEPAGE — mobile: simple logo + burger row */}
+              <div className="flex h-20 items-center justify-between lg:hidden">
+                <Link to="/" className={wordmarkClass}>
+                  Kanaan Group
+                </Link>
+                {burgerButton}
+              </div>
 
-          <nav className={`hidden items-center gap-12 lg:flex ${tone}`}>
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className="group relative text-[12px] font-medium uppercase tracking-[0.16em] transition-colors duration-400 ease-luxury hover:opacity-80"
-              >
-                {item.label}
-                <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-500 ease-luxury group-hover:scale-x-100" />
+              {/*
+                HOMEPAGE — desktop: one compact row, kept high so nothing reaches
+                the hero title.
+                 - KANAAN GROUP (left) + nav + Contact, all centred on one line;
+                 - each label carries its own short, thin underline directly
+                   beneath it (no full-width rule across the page);
+                 - "Since 1980" sits just under the wordmark, aligned to its left
+                   edge — absolutely positioned so it never shifts the row;
+                 - Contact is the filled ivory button (no underline). */}
+              <div className="relative hidden h-20 -translate-y-[12px] items-center justify-between lg:flex">
+                <div className="relative">
+                  <Link
+                    to="/"
+                    className={`inline-block border-b pb-1 font-serif text-base uppercase leading-none tracking-[0.22em] transition-colors duration-600 ease-luxury ${
+                      solid ? 'border-walnut/25 text-walnut' : 'border-ivory/45 text-ivory'
+                    }`}
+                  >
+                    Kanaan Group
+                  </Link>
+                  <span
+                    className={`absolute left-0 top-full mt-1.5 whitespace-nowrap text-[9px] uppercase tracking-[0.34em] transition-colors duration-600 ease-luxury ${
+                      solid ? 'text-walnut/65' : 'text-ivory/75'
+                    }`}
+                  >
+                    Since 1980
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-10">
+                  <nav className={`flex items-center gap-10 ${tone}`}>
+                    {NAV_ITEMS.map((item) => (
+                      <Link
+                        key={item.to}
+                        to={item.to}
+                        className={`border-b pb-1 text-[12px] font-medium uppercase leading-none tracking-[0.16em] transition-colors duration-400 ease-luxury ${
+                          solid
+                            ? 'border-walnut/25 hover:border-walnut/60'
+                            : 'border-ivory/40 hover:border-ivory/90'
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </nav>
+                  <Link to="/contact" className={contactClass}>
+                    Contact
+                  </Link>
+                </div>
+              </div>
+            </>
+          ) : (
+            /* INNER PAGES — single centered row, mobile + desktop. Unchanged. */
+            <div className="flex h-20 items-center justify-between lg:h-28">
+              <Link to="/" className={wordmarkClass}>
+                Kanaan Group
               </Link>
-            ))}
-          </nav>
 
-          <div className="flex items-center gap-4">
-            <Link
-              to="/contact"
-              className={`hidden border px-6 py-2.5 text-[10.5px] uppercase tracking-[0.22em] transition-colors duration-500 ease-luxury lg:inline-block ${
-                solid
-                  ? 'border-bronze/80 text-bronze hover:bg-bronze hover:text-ivory'
-                  : 'border-ivory/60 text-ivory hover:bg-ivory hover:text-walnut'
-              }`}
-            >
-              Contact
-            </Link>
+              <nav className={`hidden items-center gap-12 lg:flex ${tone}`}>
+                {NAV_ITEMS.map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className="group relative text-[12px] font-medium uppercase tracking-[0.16em] transition-colors duration-400 ease-luxury hover:opacity-80"
+                  >
+                    {item.label}
+                    <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-500 ease-luxury group-hover:scale-x-100" />
+                  </Link>
+                ))}
+              </nav>
 
-            <button
-              type="button"
-              aria-label="Open menu"
-              onClick={() => setDrawerOpen(true)}
-              className={`transition-colors duration-600 ease-luxury lg:hidden ${tone}`}
-            >
-              <Menu size={26} strokeWidth={1.4} />
-            </button>
-          </div>
+              <div className="flex items-center gap-4">
+                <Link
+                  to="/contact"
+                  className={`hidden lg:inline-block ${contactClass}`}
+                >
+                  Contact
+                </Link>
+                {burgerButton}
+              </div>
+            </div>
+          )}
         </div>
       </header>
 
