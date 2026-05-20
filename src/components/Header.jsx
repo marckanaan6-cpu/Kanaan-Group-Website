@@ -57,7 +57,9 @@ export default function Header({ overHero = false }) {
       type="button"
       aria-label="Open menu"
       onClick={() => setDrawerOpen(true)}
-      className={`transition-colors duration-600 ease-luxury lg:hidden ${tone}`}
+      // -m-2.5 + p-2.5 grows the tap target to ~46px without moving the icon
+      // or shifting surrounding layout. lg:hidden so desktop is untouched.
+      className={`-m-2.5 p-2.5 transition-colors duration-600 ease-luxury lg:hidden ${tone}`}
     >
       <Menu size={26} strokeWidth={1.4} />
     </button>

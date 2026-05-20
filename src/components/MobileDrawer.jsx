@@ -1,98 +1,97 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
 
-const LUXURY_EASE = [0.22, 1, 0.36, 1]
+/*
+  MobileDrawer
 
+  The panel is always mounted and slides in/out with a CSS transform
+  transition (translate-x-0 ↔ translate-x-full). A CSS transition is used
+  instead of an AnimatePresence mount/unmount so the panel can never get
+  "stuck" half-exited with focusable links — and so the slide is fully
+  reliable.
+
+  When closed the panel is pushed off-screen AND made completely
+  non-interactive:
+   - `inert` (toggled on the DOM node) removes it and its children from the
+     tab order and the accessibility tree;
+   - `aria-hidden` hides it from assistive tech;
+   - `pointer-events-none` blocks any stray taps.
+  The global `body { overflow-x: hidden }` keeps the off-screen panel from
+  ever producing a horizontal scrollbar.
+*/
 export default function MobileDrawer({ open, onClose, items }) {
+  const panelRef = useRef(null)
+
+  // Lock body scroll while the drawer is open; restore on close/unmount.
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
+    document.body.style.overflow = open ? 'hidden' : ''
     return () => {
       document.body.style.overflow = ''
     }
   }, [open])
 
+  // Toggle the `inert` attribute imperatively so the closed panel's contents
+  // can never be focused or read by assistive tech. (Done via the DOM rather
+  // than a prop to stay correct across React versions, where a falsy `inert`
+  // prop can still serialize to an active boolean attribute.)
+  useEffect(() => {
+    const el = panelRef.current
+    if (!el) return
+    if (open) el.removeAttribute('inert')
+    else el.setAttribute('inert', '')
+  }, [open])
+
   return (
-    <AnimatePresence>
-      {open && (
-        <motion.div
-          key="drawer"
-          initial={{ x: '100%' }}
-          animate={{ x: 0 }}
-          exit={{ x: '100%' }}
-          transition={{ duration: 0.6, ease: LUXURY_EASE }}
-          className="fixed inset-0 z-50 flex flex-col bg-ivory text-walnut"
+    <div
+      ref={panelRef}
+      aria-hidden={!open}
+      className={`fixed inset-0 z-50 flex flex-col bg-ivory text-walnut transition-transform duration-700 ease-luxury ${
+        open ? 'translate-x-0' : 'pointer-events-none translate-x-full'
+      }`}
+    >
+      <div className="flex h-20 items-center justify-between px-6 sm:px-10">
+        <Link
+          to="/"
+          onClick={onClose}
+          className="font-serif text-lg uppercase tracking-editorial"
         >
-          <div className="flex h-20 items-center justify-between px-6 sm:px-10">
-            <Link
-              to="/"
-              onClick={onClose}
-              className="font-serif text-lg uppercase tracking-editorial"
-            >
-              Kanaan Group
-            </Link>
-            <button
-              type="button"
-              aria-label="Close menu"
-              onClick={onClose}
-              className="text-walnut"
-            >
-              <X size={26} strokeWidth={1.4} />
-            </button>
-          </div>
+          Kanaan Group
+        </Link>
+        <button
+          type="button"
+          aria-label="Close menu"
+          onClick={onClose}
+          className="-m-2.5 p-2.5 text-walnut"
+        >
+          <X size={26} strokeWidth={1.4} />
+        </button>
+      </div>
 
-          <nav className="flex flex-1 flex-col justify-center gap-8 px-10 pb-24">
-            {items.map((item, i) => (
-              <motion.div
-                key={item.to}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  ease: LUXURY_EASE,
-                  delay: 0.15 + i * 0.06,
-                }}
-              >
-                <Link
-                  to={item.to}
-                  onClick={onClose}
-                  className="block font-serif text-4xl text-walnut"
-                >
-                  {item.label}
-                </Link>
-              </motion.div>
-            ))}
+      <nav className="flex flex-1 flex-col justify-center gap-8 px-10 pb-24">
+        {items.map((item) => (
+          <Link
+            key={item.to}
+            to={item.to}
+            onClick={onClose}
+            className="block font-serif text-4xl text-walnut"
+          >
+            {item.label}
+          </Link>
+        ))}
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                ease: LUXURY_EASE,
-                delay: 0.15 + items.length * 0.06,
-              }}
-              className="mt-8"
-            >
-              <Link
-                to="/contact"
-                onClick={onClose}
-                className="inline-block border border-bronze px-7 py-3 text-[11px] uppercase tracking-editorial text-bronze transition-colors duration-500 ease-luxury hover:bg-bronze hover:text-ivory"
-              >
-                Contact
-              </Link>
-            </motion.div>
-          </nav>
+        <Link
+          to="/contact"
+          onClick={onClose}
+          className="mt-8 self-start border border-bronze px-7 py-3 text-[11px] uppercase tracking-editorial text-bronze transition-colors duration-500 ease-luxury hover:bg-bronze hover:text-ivory"
+        >
+          Contact
+        </Link>
+      </nav>
 
-          <div className="px-10 pb-10 text-[11px] uppercase tracking-editorial text-stone">
-            Since 1980
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+      <div className="px-10 pb-10 text-[11px] uppercase tracking-editorial text-stone">
+        Since 1980
+      </div>
+    </div>
   )
 }

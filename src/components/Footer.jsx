@@ -53,8 +53,10 @@ function ColumnHeading({ children }) {
 }
 
 function FooterLink({ to, href, external, sublabel, children }) {
+  // py-2.5 grows the mobile/tablet tap target to ~44px; lg:py-0 keeps the
+  // desktop footer spacing exactly as before.
   const className =
-    'inline-block text-[14px] text-ivory/80 transition-colors duration-400 ease-luxury hover:text-ivory'
+    'inline-block py-2.5 text-[14px] text-ivory/80 transition-colors duration-400 ease-luxury hover:text-ivory lg:py-0'
 
   const content = sublabel ? (
     <>
