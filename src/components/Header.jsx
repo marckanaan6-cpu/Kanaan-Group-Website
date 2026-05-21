@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu } from 'lucide-react'
+import { Instagram, Menu } from 'lucide-react'
 import MobileDrawer from './MobileDrawer.jsx'
 
 const NAV_ITEMS = [
@@ -10,6 +10,9 @@ const NAV_ITEMS = [
   { label: 'About', to: '/about' },
   { label: 'Locations', to: '/locations' },
 ]
+
+const INSTAGRAM_URL =
+  'https://www.instagram.com/kanaan_group?igsh=M2dubmxiY2dvYWVm'
 
 export default function Header({ overHero = false }) {
   // Lazy initial state — read the actual scroll position on first render
@@ -63,6 +66,20 @@ export default function Header({ overHero = false }) {
     >
       <Menu size={26} strokeWidth={1.4} />
     </button>
+  )
+
+  // Subtle Instagram icon — desktop header only (mobile uses the drawer link).
+  // -m-1.5 + p-1.5 keeps a comfortable click area without shifting the row.
+  const instagramIcon = (
+    <a
+      href={INSTAGRAM_URL}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Kanaan Group on Instagram"
+      className={`hidden -m-1.5 p-1.5 transition-colors duration-400 ease-luxury hover:opacity-70 lg:inline-flex ${tone}`}
+    >
+      <Instagram size={18} strokeWidth={1.6} />
+    </a>
   )
 
   return (
@@ -134,7 +151,7 @@ export default function Header({ overHero = false }) {
                   </span>
                 </div>
 
-                <div className="flex items-center gap-10">
+                <div className="flex items-center gap-8">
                   <nav className={`flex items-center gap-10 ${tone}`}>
                     {NAV_ITEMS.map((item) => (
                       <Link
@@ -150,9 +167,12 @@ export default function Header({ overHero = false }) {
                       </Link>
                     ))}
                   </nav>
-                  <Link to="/contact" className={contactClass}>
-                    Contact
-                  </Link>
+                  <div className="flex items-center gap-5">
+                    {instagramIcon}
+                    <Link to="/contact" className={contactClass}>
+                      Contact
+                    </Link>
+                  </div>
                 </div>
               </div>
             </>
@@ -176,7 +196,8 @@ export default function Header({ overHero = false }) {
                 ))}
               </nav>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-5">
+                {instagramIcon}
                 <Link
                   to="/contact"
                   className={`hidden lg:inline-block ${contactClass}`}

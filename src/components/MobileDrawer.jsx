@@ -1,6 +1,9 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { X } from 'lucide-react'
+import { Instagram, X } from 'lucide-react'
+
+const INSTAGRAM_URL =
+  'https://www.instagram.com/kanaan_group?igsh=M2dubmxiY2dvYWVm'
 
 /*
   MobileDrawer
@@ -87,6 +90,18 @@ export default function MobileDrawer({ open, onClose, items }) {
         >
           Contact
         </Link>
+
+        <a
+          href={INSTAGRAM_URL}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Kanaan Group on Instagram"
+          onClick={onClose}
+          className="mt-6 inline-flex items-center gap-3 self-start py-3 text-[12px] uppercase tracking-editorial text-walnut/70 transition-colors duration-400 ease-luxury hover:text-walnut"
+        >
+          <Instagram size={18} strokeWidth={1.6} />
+          Instagram
+        </a>
       </nav>
 
       <div className="px-10 pb-10 text-[11px] uppercase tracking-editorial text-stone">
