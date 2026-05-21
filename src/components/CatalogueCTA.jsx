@@ -22,6 +22,13 @@ export default function CatalogueCTA() {
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
+            {/* Thin controlled Kaindl-blue rule — the only accent in this
+                section; the download button stays warm bronze (accents never
+                sit on a primary CTA). */}
+            <span
+              aria-hidden="true"
+              className="mx-auto mb-8 block h-px w-10 bg-kaindl/60"
+            />
             <h2 className="font-serif text-display-md leading-[1.05] text-walnut">
               Get the catalogue.
             </h2>

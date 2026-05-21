@@ -4,24 +4,20 @@ import Section from './Section.jsx'
 import Container from './Container.jsx'
 import SectionLabel from './SectionLabel.jsx'
 import Reveal from './Reveal.jsx'
+import KaindlSwatch from './KaindlSwatch.jsx'
+import PartnerLockup from './PartnerLockup.jsx'
+import { pickFinishes } from '../data/kaindlFinishes.js'
 
 /*
-  TEMPORARY MOOD IMAGE — replace with real Kanaan/Kaindl material photography later.
-  Not a real Kanaan catalogue shoot. Do not present as the official catalogue.
+  MATERIALS · KAINDL — homepage teaser.
 
-  Place file at: public/images/products/kaindl-materials.jpg
-
-  Brief:
-   - A flat-lay or close-crop of Kaindl panel swatches and material samples
-     arranged on a warm linen or ivory surface, editorial composition, soft
-     daylight. Could also be a close-crop of stacked panel edges showing
-     wood/stone/lacquer texture variety. ~1600px+ wide, landscape ~16:10.
-   - Should evoke a curated material library, not a hardware-store sample rack.
-
-  Until the file is present, a warm bg-walnut/10 placeholder shows in the
-  image slot so the section layout stays intact.
+  A short, graphical preview of the Kaindl partnership: one short line, a strip
+  of four featured swatches (one per family), a small Kaindl lockup, and a link
+  into the full catalogue. Controlled Kaindl-blue accent only (lockup rule +
+  swatch codes); the section eyebrow stays olive. Real textures replace the
+  placeholder cards later via kaindlFinishes.js.
 */
-const KAINDL_IMAGE_SRC = '/images/products/kaindl-materials.jpg'
+const FEATURED = pickFinishes('27049', '44374', '4398', '5414')
 
 export default function MaterialsKaindl() {
   return (
@@ -32,7 +28,7 @@ export default function MaterialsKaindl() {
       className="pt-20 pb-28 md:pt-24 md:pb-36 lg:pt-28 lg:pb-44"
     >
       <Container>
-        {/* Intro — label + headline */}
+        {/* Intro */}
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <SectionLabel number="04">MATERIALS</SectionLabel>
@@ -42,49 +38,54 @@ export default function MaterialsKaindl() {
               A partnership in surfaces.
             </h2>
           </Reveal>
+          <Reveal delay={0.3}>
+            <p className="mt-5 text-[15px] leading-[1.7] text-charcoal/80">
+              Exclusive Kaindl partner in Lebanon — solid, concrete, metal, and
+              wood surfaces, selected for interiors that last.
+            </p>
+          </Reveal>
         </div>
 
-        {/* Main material image */}
-        <Reveal delay={0.25}>
-          <div className="mx-auto mt-12 max-w-5xl lg:mt-16">
-            <div className="aspect-[16/10] overflow-hidden bg-walnut/10">
-              <img
-                src={KAINDL_IMAGE_SRC}
-                alt="Kaindl panel swatches and material samples arranged for selection"
-                className="block h-full w-full object-cover object-[center_35%]"
+        {/* Featured swatch strip */}
+        <div className="mx-auto mt-12 max-w-5xl lg:mt-16">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4 lg:gap-x-8">
+            {FEATURED.map((finish, i) => (
+              <KaindlSwatch
+                key={finish.code}
+                finish={finish}
+                category={finish.family}
+                delay={0.1 + i * 0.08}
               />
-            </div>
+            ))}
           </div>
-        </Reveal>
+        </div>
 
-        {/* Body + CTA */}
-        <div className="mx-auto mt-10 max-w-2xl text-center lg:mt-14">
+        {/* Lockup + catalogue link */}
+        <div className="mt-12 flex flex-col items-center gap-8 lg:mt-14">
           <Reveal>
-            <p className="text-[15px] leading-[1.75] text-charcoal/80">
-              As the exclusive Lebanese partner of Kaindl, Kanaan Group works
-              with a focused range of solid lacquers, stone effects, and
-              natural wood decors — selected for interiors that need both
-              beauty and durability.
-            </p>
+            <PartnerLockup
+              logo="/images/brands/kaindl-logo-transparent.png"
+              alt="Kaindl"
+              label="Exclusive Kaindl partner in Lebanon"
+              align="center"
+            />
           </Reveal>
 
           <Reveal delay={0.15}>
-            <div className="mt-10">
-              <Link
-                to="/catalogue"
-                className="group inline-flex items-center gap-3 text-[12px] uppercase tracking-editorial text-bronze transition-colors duration-500 ease-luxury hover:text-walnut"
-              >
-                <span className="relative">
-                  Explore the catalogue
-                  <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-500 ease-luxury group-hover:scale-x-100" />
-                </span>
-                <ArrowRight
-                  size={14}
-                  strokeWidth={1.4}
-                  className="transition-transform duration-500 ease-luxury group-hover:translate-x-1"
-                />
-              </Link>
-            </div>
+            <Link
+              to="/catalogue"
+              className="group inline-flex items-center gap-3 text-[12px] uppercase tracking-editorial text-bronze transition-colors duration-500 ease-luxury hover:text-walnut"
+            >
+              <span className="relative">
+                Explore the catalogue
+                <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-500 ease-luxury group-hover:scale-x-100" />
+              </span>
+              <ArrowRight
+                size={14}
+                strokeWidth={1.4}
+                className="transition-transform duration-500 ease-luxury group-hover:translate-x-1"
+              />
+            </Link>
           </Reveal>
         </div>
       </Container>
