@@ -15,6 +15,15 @@ export default {
         bronze: '#8C6A3F',
         'bronze-dark': '#6E5230',
         olive: '#6B6A3A',
+        // Partner accent tokens — DEFINED ONLY, not yet applied anywhere on the
+        // site. Controlled accents per the kanaan-brand-system skill:
+        //   kaindl → Catalogue / wood-materials moments only
+        //   kolity → Accessories moments only
+        // Temporary muted placeholders; replace with official brand colors when
+        // provided (and desaturate to stay warm-compatible). Use via low-opacity
+        // modifiers (e.g. border-kaindl/30) for subtle, small accents.
+        kaindl: '#3E5366', // muted deep slate blue
+        kolity: '#3F5141', // muted deep green
       },
       fontFamily: {
         serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],

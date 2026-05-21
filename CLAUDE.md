@@ -137,3 +137,30 @@ Use **Vite + React + Tailwind CSS**.
 - Use reusable components.
 - Make the website responsive for desktop, tablet, and mobile.
 - Always keep the design close to the approved warm luxury reference.
+
+## Brand System Addendum (four strengths + partner accents)
+
+The detailed governance lives in the `kanaan-brand-system` skill. This section records the law.
+
+### The four strengths of Kanaan Group
+The website exists to communicate four strengths. Every major section should advance one:
+1. **Custom woodwork and interiors** — bespoke kitchens, bedrooms, doors, wall panels, full interiors.
+2. **Advanced workshop, machines, and production capability** — real machinery and precision (trust through documented craft + technology).
+3. **Large stock / wood distribution through two branches** — Antelias and Mazraat Yachouh as supply hubs (state only confirmed facts; never invent inventory or claims).
+4. **Official brand distribution** — **Kaindl** for boards/surfaces; **Kolity** for accessories.
+
+### Partner accent rules (controlled accents, never dominant themes)
+- The warm core (ivory / walnut / bronze / stone / olive) is always primary. Partner colors are **accents only — never dominant themes**, never page or section backgrounds.
+- **Kaindl blue** is allowed only in **Catalogue / wood-materials / Kaindl-specific** moments.
+- **Kolity green** is allowed only in **Accessories / Kolity-specific** moments.
+- **Never turn the whole website (or a whole section) blue or green.** Accents stay subtle, controlled, and small (≤ ~5% of any viewport).
+- **Never use both partner accents strongly in the same section** — one partner per context.
+- Section eyebrows/labels stay **olive** sitewide; the partner accent is reserved for explicitly partner-owned elements (lockups, badges, a thin divider, small swatch/spec tags, in-section hover).
+- Tailwind tokens `kaindl` and `kolity` are **defined but not yet applied** to the site. Current values are temporary muted placeholders pending official brand colors.
+
+### Partner presentation
+- Use official partner wording only when confirmed; do not invent "official/exclusive/authorized" claims.
+- Logos shown only if provided/allowed, per the partner's usage rules (don't recolor or distort).
+- Logo assets (added, not yet used on the site):
+  - `public/images/brands/kaindl-logo.jpg`
+  - `public/images/brands/kolity-logo.jpg`
