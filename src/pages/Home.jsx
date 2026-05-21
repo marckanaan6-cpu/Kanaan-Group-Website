@@ -4,6 +4,7 @@ import Heritage from '../components/Heritage.jsx'
 import TwoWorlds from '../components/TwoWorlds.jsx'
 import WorkshopCapability from '../components/WorkshopCapability.jsx'
 import MaterialsKaindl from '../components/MaterialsKaindl.jsx'
+import AccessoriesKolity from '../components/AccessoriesKolity.jsx'
 import Locations from '../components/Locations.jsx'
 import ClosingCTA from '../components/ClosingCTA.jsx'
 import Footer from '../components/Footer.jsx'
@@ -26,6 +27,7 @@ export default function Home() {
         <TwoWorlds />
         <WorkshopCapability />
         <MaterialsKaindl />
+        <AccessoriesKolity />
         <Locations />
         <ClosingCTA />
       </main>
