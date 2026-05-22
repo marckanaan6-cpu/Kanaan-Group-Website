@@ -8,23 +8,23 @@ import { useReducedMotion } from 'framer-motion'
 
   Behaviour:
    - muted / loop / playsInline (required for silent inline autoplay).
+   - WebM source first, MP4 fallback (<source> order), with a poster image.
    - Plays only when scrolled into view and pauses off-screen, via a native
-     IntersectionObserver — this also defers the heavy download (preload
-     "metadata") until the tile is near view, and keeps just the visible video
-     playing.
-   - prefers-reduced-motion → never autoplays; stays on the poster / first frame.
+     IntersectionObserver — this also defers the download (preload "metadata")
+     until the tile is near view, and keeps just the visible video playing.
+   - prefers-reduced-motion → never autoplays; the poster (static frame) shows.
    - Premium loading: a warm placeholder (the title) sits BEHIND the video and
-     shows through until the video has frames to paint — no blank flash, no
-     broken state, no JS opacity gate to get stuck.
+     shows through until the poster/first frame paints — no blank flash.
 
   Props:
-   - src           video file (mp4)
-   - poster        optional poster image (recommended — see notes)
+   - webm          optional WebM source (served first if present)
+   - mp4           MP4 source (fallback / required)
+   - poster        poster image (recommended; shown until play + for reduced motion)
    - title         caption title
    - description   short caption line
    - accent        'warm' (bronze) | 'kolity' (green) — caption hairline only
    - aspect        Tailwind aspect class for the frame (default 16/9, matches
-                   the 1920x1080 source videos)
+                   the 1280x720 source videos)
 */
 const ACCENT_HAIRLINE = {
   warm: 'bg-bronze/50',
@@ -32,7 +32,8 @@ const ACCENT_HAIRLINE = {
 }
 
 export default function MechanismVideo({
-  src,
+  webm,
+  mp4,
   poster,
   title,
   description,
@@ -72,7 +73,7 @@ export default function MechanismVideo({
   return (
     <figure className="group">
       <div ref={frameRef} className={`relative overflow-hidden bg-walnut/5 ${aspect}`}>
-        {/* Warm placeholder behind the video — shows through until frames paint */}
+        {/* Warm placeholder behind the video — shows through until it paints */}
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-4 text-center">
           <span className="text-eyebrow uppercase tracking-[0.2em] text-walnut/40">
             {title}
@@ -81,7 +82,6 @@ export default function MechanismVideo({
 
         <video
           ref={videoRef}
-          src={src}
           poster={poster || undefined}
           muted
           loop
@@ -89,7 +89,10 @@ export default function MechanismVideo({
           preload="metadata"
           aria-label={title}
           className="absolute inset-0 block h-full w-full object-cover"
-        />
+        >
+          {webm && <source src={webm} type="video/webm" />}
+          {mp4 && <source src={mp4} type="video/mp4" />}
+        </video>
       </div>
 
       <figcaption className="mt-4">

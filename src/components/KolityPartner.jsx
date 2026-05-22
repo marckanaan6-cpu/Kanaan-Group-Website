@@ -82,7 +82,9 @@ export default function KolityPartner() {
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:mt-20">
           <Reveal delay={0.1}>
             <MechanismVideo
-              src="/videos/kolity/hidden-drawer-system.mp4"
+              webm="/videos/kolity/hidden-drawer-system.webm"
+              mp4="/videos/kolity/hidden-drawer-system.mp4"
+              poster="/images/kolity/hidden-drawer-system-poster.jpg"
               title="Hidden drawer system"
               description="Concealed runners — a clean drawer front and a smooth, quiet close."
               accent="kolity"
@@ -90,7 +92,9 @@ export default function KolityPartner() {
           </Reveal>
           <Reveal delay={0.2}>
             <MechanismVideo
-              src="/videos/kolity/ball-bearing-slide.mp4"
+              webm="/videos/kolity/ball-bearing-slide.webm"
+              mp4="/videos/kolity/ball-bearing-slide.mp4"
+              poster="/images/kolity/ball-bearing-slide-poster.jpg"
               title="Ball-bearing drawer slide"
               description="Full-extension travel on precision steel ball bearings."
               accent="kolity"
