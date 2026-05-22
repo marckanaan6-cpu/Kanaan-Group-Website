@@ -6,16 +6,16 @@ import WorkshopCapability from '../components/WorkshopCapability.jsx'
 import MaterialsKaindl from '../components/MaterialsKaindl.jsx'
 import AccessoriesKolity from '../components/AccessoriesKolity.jsx'
 import Locations from '../components/Locations.jsx'
+import Capacity from '../components/Capacity.jsx'
 import ClosingCTA from '../components/ClosingCTA.jsx'
 import Footer from '../components/Footer.jsx'
 
 /*
-  "The Reveal" homepage — staged build.
-  Stage 1: merged the former InsideTheWorkshop + Atelier sections into the
-  single WorkshopCapability chapter (03). InsideTheWorkshop.jsx and Atelier.jsx
-  are kept in the repo but no longer rendered here. Materials (04) and the
-  Locations directory (05) stay in place until later stages add the
-  Accessories·Kolity and Capacity & Two Branches sections.
+  "The Reveal" homepage.
+  Order: Hero → 01 Heritage → 02 Two Worlds → 03 The Workshop → 04 Materials →
+  05 Accessories → 06 Locations → 07 Capacity → Closing CTA.
+  (InsideTheWorkshop.jsx and Atelier.jsx were merged into WorkshopCapability and
+  are no longer rendered.)
 */
 export default function Home() {
   return (
@@ -29,6 +29,7 @@ export default function Home() {
         <MaterialsKaindl />
         <AccessoriesKolity />
         <Locations />
+        <Capacity />
         <ClosingCTA />
       </main>
       <Footer />
