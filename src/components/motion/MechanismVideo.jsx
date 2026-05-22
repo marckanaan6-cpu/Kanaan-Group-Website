@@ -39,6 +39,7 @@ export default function MechanismVideo({
   description,
   accent = 'warm',
   aspect = 'aspect-video',
+  showCaption = true,
 }) {
   const reduce = useReducedMotion()
   const videoRef = useRef(null)
@@ -95,19 +96,21 @@ export default function MechanismVideo({
         </video>
       </div>
 
-      <figcaption className="mt-4">
-        <div className="flex items-center gap-3">
-          <span aria-hidden="true" className={`h-px w-6 ${hairline}`} />
-          <span className="font-serif text-[17px] leading-tight text-walnut">
-            {title}
-          </span>
-        </div>
-        {description && (
-          <p className="mt-1.5 max-w-sm text-[13px] leading-[1.6] text-charcoal/70">
-            {description}
-          </p>
-        )}
-      </figcaption>
+      {showCaption && (
+        <figcaption className="mt-4">
+          <div className="flex items-center gap-3">
+            <span aria-hidden="true" className={`h-px w-6 ${hairline}`} />
+            <span className="font-serif text-[17px] leading-tight text-walnut">
+              {title}
+            </span>
+          </div>
+          {description && (
+            <p className="mt-1.5 max-w-sm text-[13px] leading-[1.6] text-charcoal/70">
+              {description}
+            </p>
+          )}
+        </figcaption>
+      )}
     </figure>
   )
 }

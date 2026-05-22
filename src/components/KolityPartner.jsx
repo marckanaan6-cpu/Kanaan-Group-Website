@@ -4,7 +4,7 @@ import SectionLabel from './SectionLabel.jsx'
 import Reveal from './Reveal.jsx'
 import AccessoryCard from './AccessoryCard.jsx'
 import PartnerLockup from './PartnerLockup.jsx'
-import MechanismVideo from './motion/MechanismVideo.jsx'
+import MechanismStory from './motion/MechanismStory.jsx'
 import { KOLITY_FAMILIES } from '../data/kolityCategories.js'
 
 /*
@@ -76,31 +76,10 @@ export default function KolityPartner() {
           </Reveal>
         </div>
 
-        {/* Featured media — real Kolity mechanism videos. Sits between the
-            distributor intro and the family grids. Two tiles; the family cards
-            below stay static. */}
-        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:mt-20">
-          <Reveal delay={0.1}>
-            <MechanismVideo
-              webm="/videos/kolity/hidden-drawer-system.webm"
-              mp4="/videos/kolity/hidden-drawer-system.mp4"
-              poster="/images/kolity/hidden-drawer-system-poster.jpg"
-              title="Hidden drawer system"
-              description="Concealed runners — a clean drawer front and a smooth, quiet close."
-              accent="kolity"
-            />
-          </Reveal>
-          <Reveal delay={0.2}>
-            <MechanismVideo
-              webm="/videos/kolity/ball-bearing-slide.webm"
-              mp4="/videos/kolity/ball-bearing-slide.mp4"
-              poster="/images/kolity/ball-bearing-slide-poster.jpg"
-              title="Ball-bearing drawer slide"
-              description="Full-extension travel on precision steel ball bearings."
-              accent="kolity"
-            />
-          </Reveal>
-        </div>
+        {/* Featured mechanism story — the two real drawer videos as alternating
+            scroll-linked acts. Sits between the distributor intro and the family
+            grids. Only two videos; the family cards below stay static. */}
+        <MechanismStory />
 
         {/* Family clusters — Hinges, Drawer systems */}
         <div className="mt-14 flex flex-col gap-y-16 lg:mt-20 lg:gap-y-24">
