@@ -1,27 +1,23 @@
 /*
-  Kolity accessory categories — the Kolity-specific hardware range only.
+  Kolity accessory categories — the Kolity-specific hardware range.
 
-  SCOPE (confirmed): Kolity covers hinges and drawer systems. Door/closet
-  handles, measuring tapes, screwdrivers, and general tools are NOT Kolity
-  products — they belong to a future, separate "Accessories / Professional
-  Supplies" section, not this partner data.
+  REAL-MEDIA-ONLY policy: this list shows ONLY items we have real photos for, so
+  the section never renders placeholder/empty Kolity cards. Drawer systems are
+  represented by the mechanism VIDEOS in KolityPartner (hidden drawer system +
+  ball-bearing slide) — not by cards here, and drawer images are never reused.
 
-  A third family — "Cabinet mechanisms / furniture fittings" — was intentionally
-  left out until Kolity's actual range is confirmed. Do NOT invent it. Add a new
-  block here once verified.
+  Currently shipped: two hinge cards (Hydraulic hidden hinges, Closet & cabinet
+  hinges). Removed from the visible page until real media exists: Invisible
+  hinges, Drawer rollers, Drawer slides, Soft-close drawer systems.
 
-  Mirrors the structure of kaindlFinishes.js so the two partner stories stay a
-  matched set: families → items, each item with a name and an image path.
+  SCOPE: Kolity = hinges + drawer systems. Door/closet handles, tools, and
+  machines are NOT Kolity products — they live in the warm Accessories sections
+  (accessoriesSupplies.js), never under the Kolity logo or green.
 
-  Product images are NOT in the repo yet. AccessoryCard falls back to a clean
-  placeholder card showing the item name (state-driven, so no broken-image
-  flash). When real product photos are added, drop them at the `image` path
-  below (public/images/kolity/...) and they appear automatically — no code
-  change needed.
-
-  These are product / category photos, never finished Kanaan projects. Any
-  generated "application visual" must stay generic and labelled as such — never
-  captioned as a specific real project.
+  To add an item later: drop its photo at public/images/kolity/<file>.jpg and
+  add a { name, image } entry here — it appears automatically (AccessoryCard
+  falls back to a clean placeholder if an image is ever missing). These are
+  product / category photos, never finished Kanaan projects.
 */
 export const KOLITY_FAMILIES = [
   {
@@ -29,32 +25,11 @@ export const KOLITY_FAMILIES = [
     items: [
       {
         name: 'Hydraulic hidden hinges',
-        image: '/images/kolity/kolity-hydraulic-hidden-hinges.jpg',
-      },
-      {
-        name: 'Invisible hinges',
-        image: '/images/kolity/kolity-invisible-hinges.jpg',
+        image: '/images/kolity/hydraulic-hidden-door-hinge.jpg',
       },
       {
         name: 'Closet & cabinet hinges',
-        image: '/images/kolity/kolity-closet-cabinet-hinges.jpg',
-      },
-    ],
-  },
-  {
-    family: 'Drawer systems',
-    items: [
-      {
-        name: 'Drawer rollers',
-        image: '/images/kolity/kolity-drawer-rollers.jpg',
-      },
-      {
-        name: 'Drawer slides',
-        image: '/images/kolity/kolity-drawer-slides.jpg',
-      },
-      {
-        name: 'Soft-close drawer systems',
-        image: '/images/kolity/kolity-soft-close-drawer-systems.jpg',
+        image: '/images/kolity/closet-hinge.jpg',
       },
     ],
   },

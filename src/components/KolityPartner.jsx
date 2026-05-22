@@ -4,6 +4,7 @@ import SectionLabel from './SectionLabel.jsx'
 import Reveal from './Reveal.jsx'
 import AccessoryCard from './AccessoryCard.jsx'
 import PartnerLockup from './PartnerLockup.jsx'
+import MechanismVideo from './motion/MechanismVideo.jsx'
 import { KOLITY_FAMILIES } from '../data/kolityCategories.js'
 
 /*
@@ -75,6 +76,28 @@ export default function KolityPartner() {
           </Reveal>
         </div>
 
+        {/* Featured media — real Kolity mechanism videos. Sits between the
+            distributor intro and the family grids. Two tiles; the family cards
+            below stay static. */}
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:mt-20">
+          <Reveal delay={0.1}>
+            <MechanismVideo
+              src="/videos/kolity/hidden-drawer-system.mp4"
+              title="Hidden drawer system"
+              description="Concealed runners — a clean drawer front and a smooth, quiet close."
+              accent="kolity"
+            />
+          </Reveal>
+          <Reveal delay={0.2}>
+            <MechanismVideo
+              src="/videos/kolity/ball-bearing-slide.mp4"
+              title="Ball-bearing drawer slide"
+              description="Full-extension travel on precision steel ball bearings."
+              accent="kolity"
+            />
+          </Reveal>
+        </div>
+
         {/* Family clusters — Hinges, Drawer systems */}
         <div className="mt-14 flex flex-col gap-y-16 lg:mt-20 lg:gap-y-24">
           {KOLITY_FAMILIES.map((group) => (
@@ -88,7 +111,13 @@ export default function KolityPartner() {
                 </div>
               </Reveal>
 
-              <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-10 lg:mt-10 lg:grid-cols-3 lg:gap-x-8">
+              <div
+                className={`mt-8 grid grid-cols-2 gap-x-6 gap-y-10 lg:mt-10 ${
+                  group.items.length === 2
+                    ? 'mx-auto max-w-3xl lg:gap-x-10'
+                    : 'lg:grid-cols-3 lg:gap-x-8'
+                }`}
+              >
                 {group.items.map((item, i) => (
                   <AccessoryCard
                     key={item.name}

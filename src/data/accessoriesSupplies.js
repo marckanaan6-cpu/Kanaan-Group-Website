@@ -25,15 +25,11 @@ export const ACCESSORY_FAMILIES = [
     items: [
       {
         name: 'Door handles',
-        image: '/images/accessories/accessory-door-handles.jpg',
+        image: '/images/accessories/door-handles.jpg',
       },
       {
-        name: 'Furniture & cabinet handles',
-        image: '/images/accessories/accessory-furniture-cabinet-handles.jpg',
-      },
-      {
-        name: 'Finishing accessories',
-        image: '/images/accessories/accessory-finishing-accessories.jpg',
+        name: 'Furniture & closet handles',
+        image: '/images/accessories/closet-handles.jpg',
       },
     ],
   },
