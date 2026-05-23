@@ -14,7 +14,7 @@ import { ACCESSORY_FAMILIES } from '../data/accessoriesSupplies.js'
     01  Kolity      the strong distributor partner moment (green confined here)
     02  Handles     Kanaan's own range — warm
     03  Tools       Kanaan's own range — warm
-    04  Machines    Kanaan's own range — warm
+    04  Saws        Kanaan's own range — warm
     CTA             Kanaan-focused, warm
 
   Backgrounds alternate ivory ↔ beige; KolityPartner is its own beige band.
@@ -22,7 +22,7 @@ import { ACCESSORY_FAMILIES } from '../data/accessoriesSupplies.js'
   never read as Kolity-branded. Each shows its grid without a duplicate family
   eyebrow — the section heading already names the group.
 */
-const [HANDLES, TOOLS, MACHINES] = ACCESSORY_FAMILIES
+const [HANDLES, TOOLS, SAWS] = ACCESSORY_FAMILIES
 
 export default function Accessories() {
   return (
@@ -50,19 +50,19 @@ export default function Accessories() {
           number="03"
           label="TOOLS & SUPPLIES"
           title="What the workshop runs on."
-          deck="Measuring tapes, screwdrivers, and everyday professional supplies."
+          deck="Hand tools, screwdrivers, scrapers, and everyday professional supplies."
           families={[{ family: '', items: TOOLS.items }]}
           accent="warm"
         />
 
         <AccessoryFamilies
-          id="accessories-machines"
+          id="accessories-saws"
           bg="ivory"
           number="04"
-          label="MACHINES & EQUIPMENT"
-          title="Equipment for the work."
-          deck="Accessory and workshop-supply machines."
-          families={[{ family: '', items: MACHINES.items }]}
+          label="SAWS & CUTTING"
+          title="For the cut that matters."
+          deck="Saws and cutting tools for precise, clean work."
+          families={[{ family: '', items: SAWS.items }]}
           accent="warm"
         />
 

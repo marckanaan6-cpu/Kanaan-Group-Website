@@ -17,11 +17,10 @@ import PlaceholderImage from './PlaceholderImage.jsx'
   warm: the ONLY green is a single thin hairline divider (bg-kolity/40). No
   Kolity logo here — partner color is kept off the homepage by design.
 
-  TEMPORARY MOOD IMAGE — replace with real Kanaan photography later. Reuses the
-  Accessories hero placeholder; PlaceholderImage shows a clean fallback until the
-  file exists at the path below.
+  Image is the real Antelias accessories shot (shared with the Accessories hero).
 */
-const TEASER_IMAGE_SRC = '/images/products/accessories-hero.jpg'
+const TEASER_IMAGE_SRC =
+  '/images/accessories/antelias/antelias-accessories-hero.png'
 
 export default function AccessoriesKolity() {
   return (

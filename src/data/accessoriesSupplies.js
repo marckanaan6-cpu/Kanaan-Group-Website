@@ -5,31 +5,30 @@
   the Kolity green accent. Kolity (hinges + drawer systems) lives in its own
   partner data file (kolityCategories.js).
 
-  Item names here are NEUTRAL PLACEHOLDERS so the page reads as intended before
-  the real catalogue arrives. Replace them with the confirmed product list when
-  the user provides it — especially "Small machines & equipment", where the
-  exact machines are not yet confirmed (do NOT invent specific models or claims).
+  Each group maps to one section on the Accessories page (Handles, Tools, Saws),
+  mirroring the structure of kolityCategories.js: family → items, each item with
+  a name and image path.
 
-  Each group maps to one section on the Accessories page. Mirrors the structure
-  of kolityCategories.js: family → items, each item with a name and image path.
-
-  Product images are NOT in the repo yet. AccessoryCard falls back to a clean
-  placeholder card showing the item name (state-driven, no broken-image flash).
-  Drop real photos at the `image` path below (public/images/accessories/...) and
-  they appear automatically — no code change needed. These are product /
-  category photos, never finished Kanaan projects.
+  Images are the real Antelias branch photos under
+  public/images/accessories/antelias/ (.png). Item names describe what each
+  photo honestly shows — categories without a real photo were removed rather
+  than left as empty placeholders (no measuring-tape / machine photos yet).
+  AccessoryCard still falls back to a clean labelled placeholder if an image is
+  ever missing. These are product / category photos, never finished projects.
 */
+const BASE = '/images/accessories/antelias'
+
 export const ACCESSORY_FAMILIES = [
   {
     family: 'Handles & finishing details',
     items: [
       {
         name: 'Door handles',
-        image: '/images/accessories/door-handles.jpg',
+        image: `${BASE}/antelias-handle-display-1.png`,
       },
       {
-        name: 'Furniture & closet handles',
-        image: '/images/accessories/closet-handles.jpg',
+        name: 'Closet & cabinet handles',
+        image: `${BASE}/antelias-handle-display-2.png`,
       },
     ],
   },
@@ -37,34 +36,32 @@ export const ACCESSORY_FAMILIES = [
     family: 'Tools & professional supplies',
     items: [
       {
-        name: 'Measuring tapes',
-        image: '/images/accessories/accessory-measuring-tapes.jpg',
+        name: 'Hand tools & supplies',
+        image: `${BASE}/antelias-tool-wall-1.png`,
       },
       {
         name: 'Screwdrivers',
-        image: '/images/accessories/accessory-screwdrivers.jpg',
+        image: `${BASE}/antelias-screwdriver-display.png`,
       },
       {
-        name: 'Small hardware & tools',
-        image: '/images/accessories/accessory-small-hardware-tools.jpg',
+        name: 'Scrapers & finishing',
+        image: `${BASE}/antelias-scraper-display.png`,
       },
     ],
   },
   {
-    family: 'Small machines & equipment',
-    // PLACEHOLDER item names — replace with the confirmed machine list.
+    family: 'Saws & cutting',
+    // antelias-bosch-saw-closeup.png is saved but intentionally not shown here
+    // (it repeats the saw already in the "Saws" card) — keep for a future
+    // detail/gallery section.
     items: [
       {
-        name: 'Cutting & trimming machines',
-        image: '/images/accessories/accessory-cutting-trimming-machines.jpg',
+        name: 'Saws',
+        image: `${BASE}/antelias-saw-display.png`,
       },
       {
-        name: 'Sanding & finishing machines',
-        image: '/images/accessories/accessory-sanding-finishing-machines.jpg',
-      },
-      {
-        name: 'Workshop supply equipment',
-        image: '/images/accessories/accessory-workshop-supply-equipment.jpg',
+        name: 'Hand saws',
+        image: `${BASE}/antelias-hand-saw-display.png`,
       },
     ],
   },

@@ -12,21 +12,10 @@ const LUXURY_EASE = [0.22, 1, 0.36, 1]
   product cards (cards live in the sections below, so nothing repeats here).
   One strong editorial image carries the moment, warm and premium.
 
-  TEMPORARY MOOD IMAGE — replace with real Kanaan photography later. Not a real
-  Kanaan curated shoot; do not present as a finished project.
-
-  Place file at: public/images/products/accessories-hero.jpg
-
-  Brief:
-   - A wide, editorial flat-lay of MIXED supply: a few handles, hinges, a tape
-     measure, a screwdriver, small fittings — arranged on warm linen, oiled
-     walnut, or stone. Soft directional light, jewelry-grade detail.
-   - It should read as the whole range (hardware + tools), not only hinges, and
-     not as a repeat of any single section card below.
-   - Landscape ~4:3, ~1600px+ wide; composition slightly right-of-center so the
-     left-column text reads cleanly.
+  Image is the real Antelias accessories shot.
 */
-const ACCESSORIES_HERO_SRC = '/images/products/accessories-hero.jpg'
+const ACCESSORIES_HERO_SRC =
+  '/images/accessories/antelias/antelias-accessories-hero.png'
 
 function HeadlineLine({ children, delay }) {
   return (
