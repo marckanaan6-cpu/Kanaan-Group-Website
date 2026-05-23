@@ -1,0 +1,9 @@
+# Keep files that were deliberately removed from the public repo out of deploys too.
+.claude/
+CLAUDE.md
+public/catalogues/kaindl-catalogue.pdf
+
+# Local-only / rebuilt by Vercel
+node_modules
+dist
+.git
