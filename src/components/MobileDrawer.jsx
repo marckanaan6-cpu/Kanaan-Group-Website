@@ -66,10 +66,17 @@ export default function MobileDrawer({ open, onClose, items }) {
       <div className="flex h-20 items-center justify-between px-6 sm:px-10">
         <Link
           to="/"
-          onClick={onClose}
-          className="font-serif text-lg uppercase tracking-editorial"
+          onClick={handleNavClick('/')}
+          className="flex items-center gap-2.5"
         >
-          Kanaan Group
+          <img
+            src="/images/brands/kanaan-mark.png"
+            alt=""
+            className="h-7 w-auto select-none"
+          />
+          <span className="font-serif text-lg uppercase tracking-editorial">
+            Kanaan Group
+          </span>
         </Link>
         <button
           type="button"

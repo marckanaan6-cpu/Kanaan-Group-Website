@@ -129,8 +129,17 @@ export default function Header({ overHero = false }) {
             <>
               {/* HOMEPAGE — mobile: simple logo + burger row */}
               <div className="flex h-20 items-center justify-between lg:hidden">
-                <Link to="/" className={wordmarkClass}>
-                  Kanaan Group
+                <Link
+                  to="/"
+                  onClick={handleNavClick('/')}
+                  className="flex items-center gap-2.5"
+                >
+                  <img
+                    src="/images/brands/kanaan-mark.png"
+                    alt=""
+                    className="h-7 w-auto select-none"
+                  />
+                  <span className={wordmarkClass}>Kanaan Group</span>
                 </Link>
                 {burgerButton}
               </div>
@@ -145,23 +154,33 @@ export default function Header({ overHero = false }) {
                    edge — absolutely positioned so it never shifts the row;
                  - Contact is the filled ivory button (no underline). */}
               <div className="relative hidden h-20 -translate-y-[12px] items-center justify-between lg:flex">
-                <div className="relative">
-                  <Link
-                    to="/"
-                    className={`inline-block border-b pb-1 font-serif text-base uppercase leading-none tracking-[0.22em] transition-colors duration-600 ease-luxury ${
-                      solid ? 'border-walnut/25 text-walnut' : 'border-ivory/45 text-ivory'
-                    }`}
-                  >
-                    Kanaan Group
-                  </Link>
-                  <span
-                    className={`absolute left-0 top-full mt-1.5 whitespace-nowrap text-[9px] uppercase tracking-[0.34em] transition-colors duration-600 ease-luxury ${
-                      solid ? 'text-walnut/65' : 'text-ivory/75'
-                    }`}
-                  >
-                    Since 1980
+                <Link
+                  to="/"
+                  onClick={handleNavClick('/')}
+                  className="relative flex items-center gap-3"
+                >
+                  <img
+                    src="/images/brands/kanaan-mark.png"
+                    alt=""
+                    className="h-9 w-auto select-none"
+                  />
+                  <span className="relative">
+                    <span
+                      className={`inline-block border-b pb-1 font-serif text-base uppercase leading-none tracking-[0.22em] transition-colors duration-600 ease-luxury ${
+                        solid ? 'border-walnut/25 text-walnut' : 'border-ivory/45 text-ivory'
+                      }`}
+                    >
+                      Kanaan Group
+                    </span>
+                    <span
+                      className={`absolute left-0 top-full mt-1.5 whitespace-nowrap text-[9px] uppercase tracking-[0.34em] transition-colors duration-600 ease-luxury ${
+                        solid ? 'text-walnut/65' : 'text-ivory/75'
+                      }`}
+                    >
+                      Since 1980
+                    </span>
                   </span>
-                </div>
+                </Link>
 
                 <div className="flex items-center gap-8">
                   <nav className={`flex items-center gap-10 ${tone}`}>
@@ -192,8 +211,17 @@ export default function Header({ overHero = false }) {
           ) : (
             /* INNER PAGES — single centered row, mobile + desktop. Unchanged. */
             <div className="flex h-20 items-center justify-between lg:h-28">
-              <Link to="/" className={wordmarkClass}>
-                Kanaan Group
+              <Link
+                to="/"
+                onClick={handleNavClick('/')}
+                className="flex items-center gap-2.5"
+              >
+                <img
+                  src="/images/brands/kanaan-mark.png"
+                  alt=""
+                  className="h-7 w-auto select-none lg:h-8"
+                />
+                <span className={wordmarkClass}>Kanaan Group</span>
               </Link>
 
               <nav className={`hidden items-center gap-12 lg:flex ${tone}`}>
