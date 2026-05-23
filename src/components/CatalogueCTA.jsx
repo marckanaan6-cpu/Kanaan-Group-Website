@@ -4,13 +4,10 @@ import Container from './Container.jsx'
 import Reveal from './Reveal.jsx'
 
 /*
-  CATALOGUE PDF — to be added later.
-  Place file at: public/catalogues/kaindl-catalogue.pdf
-  Until the file exists, the download link will 404 in the browser when
-  clicked. The page renders normally either way.
+  CATALOGUE CTA — invites the visitor to request the catalogue. The full PDF is
+  not distributed publicly, so the primary action routes to the contact page
+  instead of a direct download.
 */
-const CATALOGUE_PDF_SRC = '/catalogues/kaindl-catalogue.pdf'
-
 export default function CatalogueCTA() {
   return (
     <Section
@@ -36,22 +33,19 @@ export default function CatalogueCTA() {
 
           <Reveal delay={0.15}>
             <p className="mx-auto mt-8 max-w-xl font-serif text-[20px] leading-[1.4] text-walnut/75 sm:text-[22px]">
-              Download the full PDF, or request a printed copy or specific
+              Request the full catalogue, a printed copy, or specific
               material samples.
             </p>
           </Reveal>
 
           <Reveal delay={0.3}>
             <div className="mt-12 flex flex-col items-center gap-6">
-              <a
-                href={CATALOGUE_PDF_SRC}
-                download="kaindl-catalogue.pdf"
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                to="/contact"
                 className="inline-block border border-bronze px-10 py-4 text-[12px] uppercase tracking-[0.22em] text-bronze transition-colors duration-500 ease-luxury hover:bg-bronze hover:text-ivory"
               >
-                Download PDF
-              </a>
+                Request catalogue
+              </Link>
 
               <Link
                 to="/contact"

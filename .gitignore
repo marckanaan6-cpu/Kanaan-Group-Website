@@ -10,5 +10,9 @@ dist-ssr
 .idea
 *.log
 
-# Local Claude Code configuration
-.claude/settings.local.json
+# Local Claude Code configuration & internal docs (kept out of the public repo)
+.claude/
+CLAUDE.md
+
+# Licensed partner catalogue — kept local, not redistributed publicly
+public/catalogues/kaindl-catalogue.pdf
