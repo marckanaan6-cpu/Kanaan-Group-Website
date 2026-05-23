@@ -2,7 +2,7 @@
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import CatalogueHero from '../components/CatalogueHero.jsx'
-import CatalogueInside from '../components/CatalogueInside.jsx'
+import CatalogueLibrary from '../components/CatalogueLibrary.jsx'
 import CatalogueCTA from '../components/CatalogueCTA.jsx'
 
 export default function Catalogue() {
@@ -11,7 +11,7 @@ export default function Catalogue() {
       <Header />
       <main>
         <CatalogueHero />
-        <CatalogueInside />
+        <CatalogueLibrary />
         <CatalogueCTA />
       </main>
       <Footer />
