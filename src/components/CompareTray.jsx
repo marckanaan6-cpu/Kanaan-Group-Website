@@ -139,6 +139,9 @@ export default function CompareTray({ items, onRemove, onClear }) {
               animate={reduce ? { opacity: 1 } : { y: '0%' }}
               exit={reduce ? { opacity: 0 } : { y: '100%' }}
               transition={{ duration: 0.45, ease: EASE }}
+              // data-lenis-prevent: let the sheet scroll natively (Lenis would
+              // otherwise hijack the wheel for the locked page body).
+              data-lenis-prevent
               className="fixed inset-x-0 bottom-0 z-50 max-h-[88vh] overflow-y-auto bg-beige"
             >
               <div className="mx-auto max-w-container px-4 py-8 md:px-8 md:py-12">

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Instagram, Menu } from 'lucide-react'
 import MobileDrawer from './MobileDrawer.jsx'
+import { useScrollToTop } from './SmoothScrollProvider.jsx'
 
 const NAV_ITEMS = [
   { label: 'Projects', to: '/projects' },
@@ -24,6 +25,17 @@ export default function Header({ overHero = false }) {
   })
   const [drawerOpen, setDrawerOpen] = useState(false)
   const location = useLocation()
+  const scrollToTop = useScrollToTop()
+
+  // Re-clicking the route you're already on is a no-op for <Link> (the
+  // pathname doesn't change, so ScrollToTop never fires). Intercept it and
+  // smooth-scroll to the top instead.
+  const handleNavClick = (to) => (e) => {
+    if (location.pathname === to) {
+      e.preventDefault()
+      scrollToTop(false)
+    }
+  }
 
   // "solid" means show the ivory background + walnut text state.
   // - Homepage passes overHero={true} → header is transparent at scroll=0 over the
@@ -157,6 +169,7 @@ export default function Header({ overHero = false }) {
                       <Link
                         key={item.to}
                         to={item.to}
+                        onClick={handleNavClick(item.to)}
                         className={`border-b pb-1 text-[12px] font-medium uppercase leading-none tracking-[0.16em] transition-colors duration-400 ease-luxury ${
                           solid
                             ? 'border-walnut/25 hover:border-walnut/60'
@@ -188,6 +201,7 @@ export default function Header({ overHero = false }) {
                   <Link
                     key={item.to}
                     to={item.to}
+                    onClick={handleNavClick(item.to)}
                     className="group relative text-[12px] font-medium uppercase tracking-[0.16em] transition-colors duration-400 ease-luxury hover:opacity-80"
                   >
                     {item.label}

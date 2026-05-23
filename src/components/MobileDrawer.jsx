@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Instagram, X } from 'lucide-react'
+import { useScrollToTop } from './SmoothScrollProvider.jsx'
 
 const INSTAGRAM_URL =
   'https://www.instagram.com/kanaan_group?igsh=M2dubmxiY2dvYWVm'
@@ -25,6 +26,15 @@ const INSTAGRAM_URL =
 */
 export default function MobileDrawer({ open, onClose, items }) {
   const panelRef = useRef(null)
+  const location = useLocation()
+  const scrollToTop = useScrollToTop()
+
+  // Closes the drawer; if the tapped route is the current one (a <Link> no-op,
+  // so ScrollToTop won't fire), scroll to the top as well.
+  const handleNavClick = (to) => () => {
+    onClose()
+    if (location.pathname === to) scrollToTop(true)
+  }
 
   // Lock body scroll while the drawer is open; restore on close/unmount.
   useEffect(() => {
@@ -76,7 +86,7 @@ export default function MobileDrawer({ open, onClose, items }) {
           <Link
             key={item.to}
             to={item.to}
-            onClick={onClose}
+            onClick={handleNavClick(item.to)}
             className="block font-serif text-4xl text-walnut"
           >
             {item.label}
