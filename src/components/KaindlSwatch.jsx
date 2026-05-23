@@ -11,9 +11,22 @@ import Reveal from './Reveal.jsx'
 
   Controlled Kaindl-blue accent: only the finish CODE and the +HYD tag use
   `text-kaindl`. The optional category stays olive. Everything else is warm.
+
+  Compare toggle (opt-in): when `onToggleCompare` is provided, a subtle corner
+  +/✓ button appears (used by the Catalogue library). It is NOT rendered
+  otherwise, so the homepage Materials section — which omits these props — is
+  completely unaffected.
 */
-export default function KaindlSwatch({ finish, category, delay = 0 }) {
+export default function KaindlSwatch({
+  finish,
+  category,
+  delay = 0,
+  onToggleCompare,
+  inCompare = false,
+  compareFull = false,
+}) {
   const [status, setStatus] = useState('loading') // 'loading' | 'loaded' | 'error'
+  const compareDisabled = compareFull && !inCompare
 
   return (
     <Reveal delay={delay}>
@@ -37,6 +50,29 @@ export default function KaindlSwatch({ finish, category, delay = 0 }) {
               status === 'loaded' ? 'opacity-100' : 'opacity-0'
             } ${status === 'error' ? 'hidden' : ''}`}
           />
+
+          {/* Compare toggle — opt-in; subtle, always visible on touch, hover on
+              desktop (and kept visible when selected). */}
+          {onToggleCompare && (
+            <button
+              type="button"
+              onClick={onToggleCompare}
+              disabled={compareDisabled}
+              aria-pressed={inCompare}
+              aria-label={
+                inCompare
+                  ? `Remove ${finish.code} from comparison`
+                  : `Add ${finish.code} to comparison`
+              }
+              className={`absolute right-2 top-2 z-10 flex h-7 w-7 items-center justify-center rounded-full border text-[14px] leading-none backdrop-blur-sm transition-all duration-300 ease-luxury opacity-100 md:opacity-0 md:group-hover:opacity-100 ${
+                inCompare
+                  ? 'border-kaindl/50 bg-kaindl/15 text-kaindl md:opacity-100'
+                  : 'border-walnut/20 bg-ivory/80 text-walnut/70 hover:border-walnut/40'
+              } ${compareDisabled ? 'cursor-not-allowed opacity-40 md:opacity-40' : ''}`}
+            >
+              {inCompare ? '✓' : '+'}
+            </button>
+          )}
         </div>
 
         <figcaption className="mt-4">

@@ -5,6 +5,7 @@ import Container from './Container.jsx'
 import SectionLabel from './SectionLabel.jsx'
 import Reveal from './Reveal.jsx'
 import KaindlSwatch from './KaindlSwatch.jsx'
+import CompareTray from './CompareTray.jsx'
 import { KAINDL_CATALOGUE, KAINDL_CATEGORIES } from '../data/kaindlCatalogue.js'
 
 /*
@@ -24,6 +25,17 @@ import { KAINDL_CATALOGUE, KAINDL_CATEGORIES } from '../data/kaindlCatalogue.js'
 export default function CatalogueLibrary() {
   const [query, setQuery] = useState('')
   const [activeCategory, setActiveCategory] = useState(null) // null = All
+  const [compare, setCompare] = useState([]) // up to 3 selected entries
+
+  const toggleCompare = (item) =>
+    setCompare((prev) => {
+      if (prev.some((c) => c.slug === item.slug))
+        return prev.filter((c) => c.slug !== item.slug)
+      if (prev.length >= 3) return prev
+      return [...prev, item]
+    })
+  const removeCompare = (slug) =>
+    setCompare((prev) => prev.filter((c) => c.slug !== slug))
 
   const q = query.trim().toLowerCase()
 
@@ -47,6 +59,7 @@ export default function CatalogueLibrary() {
   const chipIdle = 'border-stone/50 text-walnut/70 hover:border-walnut/40 hover:text-walnut'
 
   return (
+    <>
     <Section
       id="catalogue-library"
       bg="ivory"
@@ -157,6 +170,11 @@ export default function CatalogueLibrary() {
                                 key={item.slug}
                                 finish={item}
                                 delay={Math.min(i, 3) * 0.06}
+                                onToggleCompare={() => toggleCompare(item)}
+                                inCompare={compare.some(
+                                  (c) => c.slug === item.slug,
+                                )}
+                                compareFull={compare.length >= 3}
                               />
                             ))}
                           </div>
@@ -171,5 +189,12 @@ export default function CatalogueLibrary() {
         )}
       </Container>
     </Section>
+
+    <CompareTray
+      items={compare}
+      onRemove={removeCompare}
+      onClear={() => setCompare([])}
+    />
+    </>
   )
 }
