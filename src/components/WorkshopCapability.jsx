@@ -118,7 +118,7 @@ export default function WorkshopCapability() {
         {/* Chapter intro */}
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
-            <SectionLabel number="03">THE WORKSHOP</SectionLabel>
+            <SectionLabel number="04">THE WORKSHOP</SectionLabel>
           </Reveal>
           <Reveal delay={0.15}>
             <h2 className="mt-6 font-serif text-display-sm leading-[1.15] text-walnut">

@@ -1,10 +1,13 @@
 import { useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Instagram, X } from 'lucide-react'
+import WhatsAppIcon from './WhatsAppIcon.jsx'
 import { useScrollToTop } from './SmoothScrollProvider.jsx'
 
 const INSTAGRAM_URL =
   'https://www.instagram.com/kanaan_group?igsh=M2dubmxiY2dvYWVm'
+
+const WHATSAPP_URL = 'https://wa.me/9613807020'
 
 /*
   MobileDrawer
@@ -118,6 +121,18 @@ export default function MobileDrawer({ open, onClose, items }) {
         >
           <Instagram size={18} strokeWidth={1.6} />
           Instagram
+        </a>
+
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Kanaan Group on WhatsApp"
+          onClick={onClose}
+          className="mt-4 inline-flex items-center gap-3 self-start py-3 text-[12px] uppercase tracking-editorial text-walnut/70 transition-colors duration-400 ease-luxury hover:text-walnut"
+        >
+          <WhatsAppIcon size={17} />
+          WhatsApp
         </a>
       </nav>
 

@@ -23,6 +23,19 @@ export function useScrollToTop() {
   )
 }
 
+// Smooth-scroll to an element/selector (e.g. a homepage section anchor).
+export function useScrollTo() {
+  const ctx = useContext(LenisContext)
+  return (
+    ctx?.scrollTo ??
+    ((target) => {
+      const el =
+        typeof target === 'string' ? document.querySelector(target) : target
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    })
+  )
+}
+
 export default function SmoothScrollProvider({ children }) {
   const lenisRef = useRef(null)
 
@@ -58,5 +71,22 @@ export default function SmoothScrollProvider({ children }) {
     }
   }, [])
 
-  return <LenisContext.Provider value={{ scrollToTop }}>{children}</LenisContext.Provider>
+  // Smooth-scroll to a target (selector or element). Offsets for the fixed
+  // header so the section heading isn't tucked underneath it.
+  const scrollTo = useCallback((target, options = {}) => {
+    const lenis = lenisRef.current
+    if (lenis) {
+      lenis.scrollTo(target, { offset: -100, duration: 1.1, ...options })
+    } else {
+      const el =
+        typeof target === 'string' ? document.querySelector(target) : target
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [])
+
+  return (
+    <LenisContext.Provider value={{ scrollToTop, scrollTo }}>
+      {children}
+    </LenisContext.Provider>
+  )
 }

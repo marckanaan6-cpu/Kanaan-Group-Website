@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Instagram, Menu } from 'lucide-react'
 import MobileDrawer from './MobileDrawer.jsx'
+import WhatsAppIcon from './WhatsAppIcon.jsx'
 import { useScrollToTop } from './SmoothScrollProvider.jsx'
 
 const NAV_ITEMS = [
@@ -14,6 +15,8 @@ const NAV_ITEMS = [
 
 const INSTAGRAM_URL =
   'https://www.instagram.com/kanaan_group?igsh=M2dubmxiY2dvYWVm'
+
+const WHATSAPP_URL = 'https://wa.me/9613807020'
 
 export default function Header({ overHero = false }) {
   // Lazy initial state — read the actual scroll position on first render
@@ -91,6 +94,20 @@ export default function Header({ overHero = false }) {
       className={`hidden -m-1.5 p-1.5 transition-colors duration-400 ease-luxury hover:opacity-70 lg:inline-flex ${tone}`}
     >
       <Instagram size={18} strokeWidth={1.6} />
+    </a>
+  )
+
+  // WhatsApp icon — sits beside Instagram (desktop header). Custom glyph since
+  // lucide has no WhatsApp icon; inherits `tone` via currentColor.
+  const whatsappIcon = (
+    <a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Kanaan Group on WhatsApp"
+      className={`hidden -m-1.5 p-1.5 transition-colors duration-400 ease-luxury hover:opacity-70 lg:inline-flex ${tone}`}
+    >
+      <WhatsAppIcon size={17} />
     </a>
   )
 
@@ -201,6 +218,7 @@ export default function Header({ overHero = false }) {
                   </nav>
                   <div className="flex items-center gap-5">
                     {instagramIcon}
+                    {whatsappIcon}
                     <Link to="/contact" className={contactClass}>
                       Contact
                     </Link>
@@ -240,6 +258,7 @@ export default function Header({ overHero = false }) {
 
               <div className="flex items-center gap-5">
                 {instagramIcon}
+                    {whatsappIcon}
                 <Link
                   to="/contact"
                   className={`hidden lg:inline-block ${contactClass}`}

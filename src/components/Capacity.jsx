@@ -134,7 +134,7 @@ export default function Capacity() {
         {/* Section intro */}
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
-            <SectionLabel number="07">CAPACITY</SectionLabel>
+            <SectionLabel number="03">CAPACITY</SectionLabel>
           </Reveal>
           <Reveal delay={0.15}>
             <h2 className="mt-6 font-serif text-display-sm leading-[1.15] text-walnut">

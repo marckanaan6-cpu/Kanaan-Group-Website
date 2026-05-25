@@ -44,6 +44,11 @@ const CONTACT_LINKS = [
     href: 'https://www.instagram.com/kanaan_group?igsh=M2dubmxiY2dvYWVm',
     external: true,
   },
+  {
+    label: 'WhatsApp',
+    href: 'https://wa.me/9613807020',
+    external: true,
+  },
 ]
 
 function ColumnHeading({ children }) {

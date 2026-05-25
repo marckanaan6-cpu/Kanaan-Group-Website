@@ -44,7 +44,7 @@ export default function AccessoriesKolity() {
           {/* Text — right column on desktop */}
           <div className="md:col-span-5">
             <Reveal>
-              <SectionLabel number="05">ACCESSORIES</SectionLabel>
+              <SectionLabel number="06">ACCESSORIES</SectionLabel>
             </Reveal>
 
             <Reveal delay={0.15}>
