@@ -7,3 +7,6 @@ public/catalogues/kaindl-catalogue.pdf
 node_modules
 dist
 .git
+
+# PNG originals — replaced by the .webp versions served from public/
+originals/

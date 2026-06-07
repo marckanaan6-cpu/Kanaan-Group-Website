@@ -11,16 +11,16 @@ import Reveal from './Reveal.jsx'
   bottom off portrait door photos). Each image fills its column width and lets
   its own height come through, so the full door is always visible.
 
-  Files (real, verified on disk):
-    public/images/fire-rated-doors/fire-rated-door-01.png
-    public/images/fire-rated-doors/fire-rated-door-02.png
+  Files (optimized .webp; PNG originals archived under originals/):
+    public/images/fire-rated-doors/fire-rated-door-01.webp
+    public/images/fire-rated-doors/fire-rated-door-02.webp
 
   Wording is intentionally neutral. Do NOT introduce certification claims
   (EI30 / EI60 / certified / approved / compliant) until confirmed official
   details are provided by the user.
 */
-const IMAGE_01 = '/images/fire-rated-doors/fire-rated-door-01.png'
-const IMAGE_02 = '/images/fire-rated-doors/fire-rated-door-02.png'
+const IMAGE_01 = '/images/fire-rated-doors/fire-rated-door-01.webp'
+const IMAGE_02 = '/images/fire-rated-doors/fire-rated-door-02.webp'
 
 function DoorImage({ src, alt, delay = 0 }) {
   return (

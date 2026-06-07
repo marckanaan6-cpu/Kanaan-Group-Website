@@ -78,7 +78,7 @@ export const CATEGORIES_BY_KEY = Object.fromEntries(
   title is repeated across that category's cards (kept generic on purpose —
   we don't invent client/site/year details).
 */
-function entries({ category, prefix, count, title, ext = 'png', startAt = 1 }) {
+function entries({ category, prefix, count, title, ext = 'webp', startAt = 1 }) {
   return Array.from({ length: count }, (_, i) => ({
     category,
     image: `/images/projects/${prefix}-${String(startAt + i).padStart(2, '0')}.${ext}`,
@@ -102,10 +102,10 @@ export const PROJECTS = [
 // Six curated picks for the homepage "Selected Work" strip — one per major
 // category, the 01 image of each. Easy to swap once we identify favorites.
 export const FEATURED_PROJECTS = [
-  { category: 'doors',          image: '/images/projects/project-door-01.png',         title: 'Custom Wooden Door' },
-  { category: 'kitchens',       image: '/images/projects/project-kitchen-01.png',      title: 'Custom Kitchen' },
-  { category: 'commercial',     image: '/images/projects/project-commercial-01.png',   title: 'Commercial Interior' },
-  { category: 'walls-ceilings', image: '/images/projects/project-wall-ceiling-01.png', title: 'Wall & Ceiling Feature' },
-  { category: 'outdoor',        image: '/images/projects/project-outdoor-01.png',      title: 'Outdoor Woodwork' },
-  { category: 'bedrooms',       image: '/images/projects/project-bedroom-01.png',      title: 'Bedroom Woodwork' },
+  { category: 'doors',          image: '/images/projects/project-door-01.webp',         title: 'Custom Wooden Door' },
+  { category: 'kitchens',       image: '/images/projects/project-kitchen-01.webp',      title: 'Custom Kitchen' },
+  { category: 'commercial',     image: '/images/projects/project-commercial-01.webp',   title: 'Commercial Interior' },
+  { category: 'walls-ceilings', image: '/images/projects/project-wall-ceiling-01.webp', title: 'Wall & Ceiling Feature' },
+  { category: 'outdoor',        image: '/images/projects/project-outdoor-01.webp',      title: 'Outdoor Woodwork' },
+  { category: 'bedrooms',       image: '/images/projects/project-bedroom-01.webp',      title: 'Bedroom Woodwork' },
 ]

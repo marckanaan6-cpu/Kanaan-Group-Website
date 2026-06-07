@@ -18,3 +18,7 @@ CLAUDE.md
 public/catalogues/kaindl-catalogue.pdf
 
 .vercel
+
+# Original PNGs kept locally for re-encoding; .webp versions are served from
+# public/images/. Keeps the public repo and deploys lean.
+originals/
