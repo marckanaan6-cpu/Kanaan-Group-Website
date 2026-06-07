@@ -25,11 +25,14 @@ const IMAGE_02 = '/images/fire-rated-doors/fire-rated-door-02.webp'
 function DoorImage({ src, alt, delay = 0 }) {
   return (
     <Reveal delay={delay}>
+      {/* bg-beige paints immediately so the door area never reads as blank
+          while the WebP streams in on a slow connection. */}
       <img
         src={src}
         alt={alt}
         loading="lazy"
-        className="block h-auto w-full rounded-sm bg-walnut/5 shadow-[0_1px_2px_rgba(59,36,24,0.06)] ring-1 ring-walnut/5"
+        decoding="async"
+        className="block h-auto w-full rounded-sm bg-beige shadow-[0_1px_2px_rgba(59,36,24,0.06)] ring-1 ring-walnut/5"
       />
     </Reveal>
   )

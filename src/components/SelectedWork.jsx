@@ -23,16 +23,21 @@ function FeaturedCard({ project, delay = 0 }) {
   return (
     <Reveal delay={delay}>
       <figure className="group">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-walnut/5 shadow-[0_1px_2px_rgba(59,36,24,0.05)] ring-1 ring-walnut/5 transition-shadow duration-500 ease-luxury group-hover:shadow-[0_14px_28px_-12px_rgba(59,36,24,0.18)]">
-          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center">
-            <span className="text-eyebrow uppercase tracking-[0.2em] text-walnut/40">
-              {category?.name}
-            </span>
-          </div>
+        {/* Warm beige frame — paints immediately so the card never looks
+            blank while the WebP streams in; image fades over it once decoded. */}
+        <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-beige shadow-[0_1px_2px_rgba(59,36,24,0.05)] ring-1 ring-walnut/5 transition-shadow duration-500 ease-luxury group-hover:shadow-[0_14px_28px_-12px_rgba(59,36,24,0.18)]">
+          {status === 'error' && (
+            <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center">
+              <span className="text-eyebrow uppercase tracking-[0.2em] text-walnut/45">
+                {category?.name}
+              </span>
+            </div>
+          )}
           <img
             src={project.image}
             alt={project.title || category?.name || 'Project'}
             loading="lazy"
+            decoding="async"
             onLoad={() => setStatus('loaded')}
             onError={() => setStatus('error')}
             className={`absolute inset-0 block h-full w-full object-cover transition duration-700 ease-luxury group-hover:scale-[1.04] ${

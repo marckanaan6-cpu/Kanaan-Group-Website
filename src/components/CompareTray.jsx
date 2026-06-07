@@ -17,10 +17,14 @@ const EASE = [0.22, 1, 0.36, 1]
   Warm and minimal — deliberately not a shopping cart. Catalogue-only; no
   homepage/Accessories impact.
 */
-function SwatchImg({ item, className }) {
+function SwatchImg({ item, className, fit = 'cover' }) {
   const [ok, setOk] = useState(true)
   return (
-    <div className={`relative overflow-hidden bg-walnut/5 ${className}`}>
+    // Warm ivory frame (not grey) so light material samples (Cashmere /
+    // Champagne / White) sit on a tone-on-tone background that reads as part
+    // of the page, not as a solid placeholder rectangle. Subtle warm ring
+    // gives the swatch a quiet edge against the beige sheet.
+    <div className={`relative overflow-hidden bg-ivory ring-1 ring-walnut/10 ${className}`}>
       {!ok && (
         <span className="absolute inset-0 flex items-center justify-center px-2 text-center text-[10px] uppercase tracking-[0.15em] text-walnut/40">
           {item.code}
@@ -31,7 +35,7 @@ function SwatchImg({ item, className }) {
           src={item.image}
           alt={`${item.name} (${item.code})`}
           onError={() => setOk(false)}
-          className="h-full w-full object-cover"
+          className={`h-full w-full object-cover ${fit === 'contain' ? 'lg:object-contain' : ''}`}
         />
       )}
     </div>
@@ -144,7 +148,7 @@ export default function CompareTray({ items, onRemove, onClear }) {
               data-lenis-prevent
               className="fixed inset-x-0 bottom-0 z-50 max-h-[88vh] overflow-y-auto bg-beige"
             >
-              <div className="mx-auto max-w-container px-4 py-8 md:px-8 md:py-12">
+              <div className="mx-auto max-w-container px-4 py-8 md:px-8 md:py-12 lg:py-8">
                 {/* Header */}
                 <div className="flex items-start justify-between gap-6">
                   <div>
@@ -172,11 +176,19 @@ export default function CompareTray({ items, onRemove, onClear }) {
                   </div>
                 </div>
 
-                {/* Big swatches side by side */}
-                <div className={`mt-10 grid gap-6 md:gap-8 ${cols}`}>
+                {/* Big swatches side by side.
+                    On desktop, cap the swatch height (≈50vh) and switch to
+                    object-contain so the full material image is visible and
+                    the name/code/category sit in the same first view without
+                    scrolling. Mobile keeps the original square crop. */}
+                <div className={`mt-8 grid gap-6 md:mt-10 md:gap-8 ${cols}`}>
                   {items.map((it) => (
                     <figure key={it.slug}>
-                      <SwatchImg item={it} className="aspect-square w-full" />
+                      <SwatchImg
+                        item={it}
+                        fit="contain"
+                        className="aspect-square w-full lg:aspect-[4/3] lg:max-h-[50vh]"
+                      />
                       <figcaption className="mt-4">
                         <div className="flex items-baseline justify-between gap-3">
                           <h3 className="font-serif text-[clamp(1.125rem,2vw,1.5rem)] leading-tight text-walnut">

@@ -62,10 +62,13 @@ export const PROJECT_CATEGORIES = [
       'Dining, conference, and statement tables — solid wood and custom finishes.',
   },
   {
+    // Internal key kept as 'decorative-screens' so on-disk filenames
+    // (project-decorative-screen-NN.webp) stay valid. User-facing name only
+    // changed to "Decorative Panels".
     key: 'decorative-screens',
-    name: 'Decorative Screens',
+    name: 'Decorative Panels',
     description:
-      'Carved and slatted wood screens used as room dividers and feature walls.',
+      'Carved, slatted, and patterned wood panels used as room dividers and feature walls.',
   },
 ]
 

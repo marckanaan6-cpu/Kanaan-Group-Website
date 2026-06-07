@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import Section from './Section.jsx'
+import { PROJECT_FILTER_EVENT } from './ProjectsCategories.jsx'
 import Container from './Container.jsx'
 import SectionLabel from './SectionLabel.jsx'
 import Reveal from './Reveal.jsx'
@@ -33,22 +34,28 @@ function GalleryCard({ project }) {
   return (
     <Reveal>
       <figure className="group">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-walnut/5 shadow-[0_1px_2px_rgba(59,36,24,0.05)] ring-1 ring-walnut/5 transition-shadow duration-500 ease-luxury group-hover:shadow-[0_14px_28px_-12px_rgba(59,36,24,0.18)]">
-          {/* Placeholder treatment — present behind the image so a missing
-              photo still reads as an intentional, labelled card. */}
-          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center">
-            <span className="text-eyebrow uppercase tracking-[0.2em] text-walnut/40">
-              {category?.name}
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-walnut/30">
-              Photo to follow
-            </span>
-          </div>
+        {/* Warm beige frame: shows immediately, so the card never reads as
+            blank while the image streams in. Image fades over it once decoded. */}
+        <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-beige shadow-[0_1px_2px_rgba(59,36,24,0.05)] ring-1 ring-walnut/5 transition-shadow duration-500 ease-luxury group-hover:shadow-[0_14px_28px_-12px_rgba(59,36,24,0.18)]">
+          {/* Labelled fallback — only shown when the photo is genuinely
+              missing (onError). During normal loading the warm beige frame
+              alone is the placeholder. */}
+          {status === 'error' && (
+            <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center">
+              <span className="text-eyebrow uppercase tracking-[0.2em] text-walnut/45">
+                {category?.name}
+              </span>
+              <span className="text-[10px] uppercase tracking-[0.2em] text-walnut/30">
+                Photo to follow
+              </span>
+            </div>
+          )}
 
           <img
             src={project.image}
             alt={project.title || category?.name || 'Project'}
             loading="lazy"
+            decoding="async"
             onLoad={() => setStatus('loaded')}
             onError={() => setStatus('error')}
             className={`absolute inset-0 block h-full w-full object-cover transition duration-700 ease-luxury group-hover:scale-[1.04] ${
@@ -73,6 +80,18 @@ function GalleryCard({ project }) {
 
 export default function ProjectsGallery() {
   const [active, setActive] = useState('all')
+
+  // Allow the "What we build" directory above to set the filter when a
+  // category name is tapped. The directory scroll-jumps here and dispatches
+  // this event; we just need to flip the active key.
+  useEffect(() => {
+    const handler = (e) => {
+      const key = e?.detail?.key
+      if (key) setActive(key)
+    }
+    window.addEventListener(PROJECT_FILTER_EVENT, handler)
+    return () => window.removeEventListener(PROJECT_FILTER_EVENT, handler)
+  }, [])
 
   const items = useMemo(
     () =>
