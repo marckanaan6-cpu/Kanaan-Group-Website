@@ -96,7 +96,7 @@ export default function ProjectsRecent() {
         {/* Section intro */}
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
-            <SectionLabel number="02">RECENT PROJECTS</SectionLabel>
+            <SectionLabel number="03">RECENT PROJECTS</SectionLabel>
           </Reveal>
           <Reveal delay={0.15}>
             <h2 className="mt-6 font-serif text-display-sm leading-[1.15] text-walnut">

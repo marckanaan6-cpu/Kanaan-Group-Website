@@ -37,7 +37,18 @@ const CONTACT_LINKS = [
   },
   {
     label: 'khaled@kanaan-group.com',
+    sublabel: 'Khaled',
     href: 'mailto:khaled@kanaan-group.com',
+  },
+  {
+    label: 'bassem@kanaan-group.com',
+    sublabel: 'Bassem',
+    href: 'mailto:bassem@kanaan-group.com',
+  },
+  {
+    label: 'marc@kanaan-group.com',
+    sublabel: 'Marc',
+    href: 'mailto:marc@kanaan-group.com',
   },
   {
     label: '@kanaan_group',

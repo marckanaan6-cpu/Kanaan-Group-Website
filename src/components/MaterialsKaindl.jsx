@@ -31,7 +31,7 @@ export default function MaterialsKaindl() {
         {/* Intro */}
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
-            <SectionLabel number="05">MATERIALS</SectionLabel>
+            <SectionLabel number="06">MATERIALS</SectionLabel>
           </Reveal>
           <Reveal delay={0.15}>
             <h2 className="mt-6 font-serif text-display-sm leading-[1.15] text-walnut">

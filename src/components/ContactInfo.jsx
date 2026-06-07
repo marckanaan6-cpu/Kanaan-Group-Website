@@ -29,8 +29,11 @@ const METHODS = [
   },
   {
     label: 'EMAIL',
-    value: 'khaled@kanaan-group.com',
-    href: 'mailto:khaled@kanaan-group.com',
+    items: [
+      { sublabel: 'Khaled', value: 'khaled@kanaan-group.com', href: 'mailto:khaled@kanaan-group.com' },
+      { sublabel: 'Bassem', value: 'bassem@kanaan-group.com', href: 'mailto:bassem@kanaan-group.com' },
+      { sublabel: 'Marc',   value: 'marc@kanaan-group.com',   href: 'mailto:marc@kanaan-group.com' },
+    ],
   },
   {
     label: 'INSTAGRAM',
